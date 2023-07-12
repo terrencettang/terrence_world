@@ -1,2 +1,3 @@
 # terrence_world
-terrence world is the main website of mine
+Terrence World is my personal website.
+I am A Philosophy, Mathematics, Science, Computer and Technology Ardent Devotee
