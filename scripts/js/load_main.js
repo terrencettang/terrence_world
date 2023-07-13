@@ -1,17 +1,20 @@
 $(document).ready(function() {
-   loadPage("./about/index.html");
+    loadPage("./about/index.html");
 });
 
 function loadPage(page) {
-   $("#main").load(page);
+    $("#main").load(page);
 }
 
-$(document).on("click", "a:not(.social)", function(event) {
-   event.preventDefault();
-   var page = $(this).attr("href");
-   loadPage(page);
-});
-
-$(document).on("click", ".social-media a", function(event) {
-   event.stopPropagation();
+$(document).on("click", "a", function(event) {
+    var page = $(this).attr("href");
+    if (page.indexOf("http") === 0 || page.indexOf("https") === 0) {
+        // External link - open in new tab
+        event.preventDefault();
+        window.open(page, "_blank");
+    } else {
+        // Internal link - load in main section
+        event.preventDefault();
+        loadPage(page);
+    }
 });
