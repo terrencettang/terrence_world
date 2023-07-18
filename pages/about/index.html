@@ -2,7 +2,21 @@
   <div id="content">
     <h2>About Terrence World</h2>
     <br>
-    <img id="euler_portrait" src="../../img/world_320x320_1.png" alt="World Logo" class="float_right padding">
+    <div class ="main_image">
+    </div>
+    <script>
+      var imageDiv = document.querySelector('.main_image');
+      var imageId = imageDiv.getAttribute('id');
+      if (imageId === null) {
+        var img = document.createElement('img');
+        img.src = location.origin + '/terrence_world/img/world_320x320_1.png';
+        img.id = 'terrence_world_logo';
+        img.alt="World Logo";
+        img.classList.add("float_right", "padding");
+        imageDiv.appendChild(img);
+        imageDiv.setAttribute('id', 'added');
+      }     
+    </script>
     <h3>What is Terrence World?</h3>
     <p>Terrence World is a personal website created by Terrence Tang, a Hong Kong-based enthusiast of philosophy, mathematics, science, computer technology and more.</p>
     <h3>Who is Terrence Tang?</h3>
@@ -19,6 +33,6 @@
   </div>
 </main>
 
-<script src = "/../../scripts/js/redirect_main.js"></script>
+<script src = "../../scripts/js/redirect_main.js"></script>
 
   

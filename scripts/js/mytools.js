@@ -28,7 +28,7 @@ function updateSelectedToolsTable(tools) {
     </tr>
     ${selectedTools.map(tool => `
         <tr>
-        <td><a href="../../${tool.url}">${tool.name}</a></td>
+        <td><a href="${location.origin}/terrence_world/${tool.url}">${tool.name}</a></td>
         <td>${tool.description}</td>
         </tr>
     `).join("")}
@@ -43,7 +43,7 @@ function updateSelectedToolsTable(tools) {
 
 // Load the tool data from the JSON file
 const xhrObj = new XMLHttpRequest();
-xhrObj.open("GET", location.origin + "/data/tools.json");
+xhrObj.open("GET", location.origin + "/terrence_world/data/tools.json");
 xhrObj.onload = () => {
     if (xhrObj.status === 200) {
     // Parse the JSON data

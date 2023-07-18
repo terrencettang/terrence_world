@@ -99,3 +99,8 @@ label {
    @extend .nav;
    /* Additional styles for nav_sub go here */
  }
+
+.terrence_world_logo {
+   float: right;
+   padding-left: 10px;
+}

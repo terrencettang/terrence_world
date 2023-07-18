@@ -3,7 +3,6 @@
   if (oldContent) {
     $(function() {
       var $mainContent = $('<div>').html(oldContent).find('#content');
-      console.log($mainContent)
       var $script = $('<div>').html(oldContent).find('script').not('[src]');
       $('#main').html($mainContent.html());
       $.globalEval($script.html());
