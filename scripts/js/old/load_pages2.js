@@ -1,11 +1,11 @@
 // Load the content in the main section based on the URL hash
 $(document).ready(function() {
-  // Attach the event handler to the #main section
-  $('#main').on('click', 'a', function(e) {
+  // Attach the event handler to the #a section
+  $('a').on('click', function(e) {
     var link = $(this).attr('href');
     if (link.startsWith('http://localhost:8000') || link.startsWith('https://terrencettang.github.io') || 
         link.startsWith('localhost:8000') || link.startsWith('terrence') || 
-        link.startsWith('pages') || link.startsWith('.') || link.startsWith('scripts') || link.startsWith('datat') ||
+        link.startsWith('pages') || link.startsWith('.') || link.startsWith('scripts') || link.startsWith('data') ||
         link.startsWith('img')) {
       // Internal links, load the #main section
       console.log('internal: ' + link);

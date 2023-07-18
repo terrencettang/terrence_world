@@ -28,7 +28,7 @@ function updateSelectedToolsTable(tools) {
     </tr>
     ${selectedTools.map(tool => `
         <tr>
-        <td><a href="${location.origin}/terrence_world/${tool.url}">${tool.name}</a></td>
+        <td><a href="${tool.url}">${tool.name}</a></td>
         <td>${tool.description}</td>
         </tr>
     `).join("")}
