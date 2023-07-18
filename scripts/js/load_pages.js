@@ -2,7 +2,8 @@
 $(document).ready(function() {
   $('a').on('click', function(e) {
     var link = $(this).attr('href');
-    if (link.startsWith('http://localhost:8000') || link.startsWith('https://terrencettang.github.io') || link.startsWith('/')) {
+    if (link.startsWith('http://localhost:8000') || link.startsWith('https://terrencettang.github.io') || 
+    link.startsWith('pages')) {
       // Internal links, load the #main section
       e.preventDefault();
       var pathname = location.origin + "/terrence_world/" + link;

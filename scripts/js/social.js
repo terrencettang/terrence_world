@@ -1,4 +1,4 @@
-var social_media_path = '../../img/social_media/';
+var social_media_path = location.origin + "/terrence_world/img/social_media/";
 var social_media_links = [
   { alt: 'Facebook', href: 'https://www.facebook.com/terrencettang' },
   { alt: 'Instagram', href: 'https://www.instagram.com/terrencettang/' },
