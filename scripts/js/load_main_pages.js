@@ -3,14 +3,10 @@ $(document).ready(function() {
   // Attach the event handler to the #main section
   $('#main').on('click', 'a', function(e) {
     var link = $(this).attr('href');
-    if (link.startsWith('http') || link.startsWith('//') || link.startsWith('#')) {
-      // External or anchor links, do nothing
-      return;
-    } else {
+    if (!link.startsWith('http') || link.startsWith('/')) {
       // Internal links, load the #main section
-      console.log("inter");
       e.preventDefault();
-      var pathname = location.origin + '/' + link;
+      var pathname = location.origin + link;
       console.log(pathname);
       $.get(pathname, function(html) {
         var $doc = $('<div>').html(html);

@@ -2,11 +2,10 @@
 $(document).ready(function() {
   $('a').on('click', function(e) {
     var link = $(this).attr('href');
-    if (!link.startsWith('http')) {
+    if (!link.startsWith('http') || link.startsWith('/')) {
       // Internal links, load the #main section
       e.preventDefault();
-      var pathname = location.origin + '/' + link;
-      console.log(pathname);
+      var pathname = location.origin + link;
       $.get(pathname, function(html) {
         var $doc = $('<div>').html(html);
         var $mainContent = $doc.find('#content');
