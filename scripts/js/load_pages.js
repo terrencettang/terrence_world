@@ -2,10 +2,10 @@
 $(document).ready(function() {
   $('a').on('click', function(e) {
     var link = $(this).attr('href');
-    if (!link.startsWith('http') || link.startsWith('/')) {
+    if (link.startsWith('http://localhost:8000') || link.startsWith('https://terrencettang.github.io') || link.startsWith('/')) {
       // Internal links, load the #main section
       e.preventDefault();
-      var pathname = location.origin + link;
+      var pathname = location.origin + "/terrence_world" + link;
       $.get(pathname, function(html) {
         var $doc = $('<div>').html(html);
         var $mainContent = $doc.find('#content');
