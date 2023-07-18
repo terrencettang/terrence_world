@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        .tab {
+            display: none;
+        }
+        .tab.active {
+            display: block;
+        }
+        .tab-link {
+            background-color: #eee;
+            border: none;
+            color: #333;
+            cursor: pointer;
+            padding: 10px;
+            margin: 10px;
+            font-weight: bold;
+        }
+        .tab-link.active {
+            background-color: #333;
+            color: #fff;
+        }
+        textarea {
+            border: 1px solid #ccc;
+            height: 300px;
+            padding: 10px;
+            width: 100%;
+            resize: none;
+        }
+        button {
+            background-color: #333;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px;
+            margin: 10px;
+            font-weight: bold;
+        }
+        #word-count {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Text Editor</h1>
+        <div class="header-buttons">
+            <button id="new-tab">New Tab</button>
+            <button id="open-file">Open File</button>
+            <button id="save-file">Save File</button>
+        </div>
+    </header>
+    <main>
+        <div class="tab active" id="tab1">
+            <textarea></textarea>
+        </div>
+        <div class="tab-links">
+            <button class="tab-link active" data-tab="tab1">Tab 1</button>
+        </div>
+        <div id="word-count">
+        </div>
+    </main>
+    <script>
+        var tabCounter = 1;
+
+        // New tab button
+        document.getElementById("new-tab").addEventListener("click", function() {
+            tabCounter++;
+            var newTab = document.createElement("div");
+            newTab.classList.add("tab");
+            newTab.setAttribute("id", "tab" + tabCounter);
+            var newTextArea = document.createElement("textarea");
+            newTab.appendChild(newTextArea);
+            document.querySelector("main").insertBefore(newTab, document.querySelector(".tab-links"));
+            var newTabLink = document.createElement("button");
+            newTabLink.classList.add("tab-link");
+            newTabLink.setAttribute("data-tab", "tab" + tabCounter);
+            newTabLink.innerHTML = "Tab " + tabCounter;
+            newTabLink.addEventListener("click", function() {
+                activateTab(this);
+            });
+            document.querySelector(".tab-links").appendChild(newTabLink);
+            activateTab(newTabLink);
+            countWords();
+        });
+
+        // Open file button
+        document.getElementById("open-file").addEventListener("click", function() {
+            var activeTab = document.querySelector(".tab.active");
+            var fileInput = document.createElement("input");
+            fileInput.setAttribute("type", "file");
+            fileInput.addEventListener("change", function() {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    activeTab.querySelector("textarea").value = reader.result;
+                    countWords();
+                }
+                reader.readAsText(this.files[0]);
+            });
+            fileInput.click();
+        });
+
+        // Save file button
+        document.getElementById("save-file").addEventListener("click", function() {
+            var activeTab = document.querySelector(".tab.active");
+            var text = activeTab.querySelector("textarea").value;
+            var filename = "text.txt";
+            var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+            saveAs(blob, filename);
+        });
+
+        // Activate tab
+        function activateTab(tabLink) {
+            var tabId = tabLink.getAttribute("data-tab");
+            var tabs = document.querySelectorAll(".tab");
+            for (var j = 0; j < tabs.length; j++) {
+                tabs[j].classList.remove("active");
+            }
+            document.getElementById(tabId).classList.add("active");
+            var tabLinks = document.querySelectorAll(".tab-link");
+            for (var j = 0; j < tabLinks.length; j++) {
+                tabLinks[j].classList.remove("active");
+            }
+            tabLink.classList.add("active");
+            countWords();
+        }
+
+        // Tab links
+        var tabLinks = document.querySelectorAll(".tab-link");
+        for (var i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].addEventListener("click", function() {
+                activateTab(this);
+            });
+        }
+
+        // Word counting
+        function countWords() {
+            var activeTab = document.querySelector(".tab.active");
+            var textarea = activeTab.querySelector("textarea");
+            var text = textarea.value;
+            var numChars = text.length;
+            var numDigits = text.replace(/\D/g, "").length;
+            var numLines = text.split(/\r\n|\r|\n/).length;
+            var numChineseChars = text.match(/[\u4e00-\u9fa5]/g) ? text.match(/[\u4e00-\u9fa5]/g).length : 0;
+            var numChinesePunct = text.match(/[\u3001-\u303f]/g) ? text.match(/[\u3001-\u303f]/g).length : 0;
+            var numEnglishChars = text.match(/[a-zA-Z]/g) ? text.match(/[a-zA-Z]/g).length : 0;
+            var numEnglishPunct = text.match(/[\u0021-\u002f\u003a-\u0040\u005b-\u0060\u007b-\u007e]/g) ? text.match(/[\u0021-\u002f\u003a-\u0040\u005b-\u0060\u007b-\u007e]/g).length : 0;
+            var words = text.match(/\S+/g);
+            var numEnglishWords = words ? words.length : 0;
+            var numByteWords = text.length ? encodeURIComponent(text).match(/%[89ABab]/g).length : 0;
+            var wordCountElement = document.getElementById("word-count");
+            wordCountElement.innerHTML = "";
+            var charCountLabel = document.createElement("span");
+            charCountLabel.innerHTML = "Total Characters: ";
+            wordCountElement.appendChild(charCountLabel);
+            var charCountValue = document.createElement("span");
+            charCountValue.innerHTML = numChars;
+            wordCountElement.appendChild(charCountValue);
+            var numDigitsLabel = document.createElement("div");
+            numDigitsLabel.innerHTML = "Number of Digits: " + numDigits;
+            wordCountElement.appendChild(numDigitsLabel);
+            var numLinesLabel = document.createElement("div");
+            numLinesLabel.innerHTML = "Number of Lines: " + numLines;
+            wordCountElement.appendChild(numLinesLabel);
+            var numChineseLabel = document.createElement("div");
+            numChineseLabel.innerHTML = "Number of Chinese Characters: " + numChineseChars + " | Number of Chinese Punctuation: " + numChinesePunct;
+            wordCountElement.appendChild(numChineseLabel);
+            var numEnglishLabel = document.createElement("div");
+            numEnglishLabel.innerHTML = "Number of English Characters: " + numEnglishChars + " | Number of English Punctuation: " + numEnglishPunct;
+            wordCountElement.appendChild(numEnglishLabel);
+            var numEnglishWordsLabel = document.createElement("div");
+            numEnglishWordsLabel.innerHTML = "Number of English Words: " + numEnglishWords + " | Number of Byte Words: " + numByteWords;
+            wordCountElement.appendChild(numEnglishWordsLabel);
+        }
+
+        // Initial word counting
+        countWords();
+    </script>
+</body>
+</html>

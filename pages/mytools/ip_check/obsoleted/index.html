@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IP Address Checker</title>
+  </head>
+  <body>
+    <h1>Your IP Address:</h1>
+    <p id="ipAddress"></p>
+    <script>
+      function getIP(json) {
+        document.getElementById("ipAddress").innerHTML = json.ip;
+      }
+      var script = document.createElement("script");
+      script.src = "https://api.ipify.org?format=jsonp&callback=getIP";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    </script>
+  </body>
+</html>

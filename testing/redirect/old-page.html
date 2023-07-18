@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Old Page</title>
+</head>
+<body>
+    <h1>Old Page</h1>
+    <div id="main">
+        This is the old main section content.
+    </div>
+    <script>
+        // Put the main section content into localStorage
+        var main = document.getElementById('main').innerText;
+        localStorage.setItem('main', main);
+        // Redirect to new page
+        window.location.href = "new-page.html";
+    </script>
+</body>
+</html>

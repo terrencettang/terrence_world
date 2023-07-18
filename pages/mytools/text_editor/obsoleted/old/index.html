@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Text Editor</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 10px;
+			text-align: center;
+		}
+		main {
+			padding: 20px;
+			text-align: center;
+		}
+		textarea {
+			border: 1px solid #ccc;
+			height: 300px;
+			padding: 10px;
+			width: 100%;
+			resize: none;
+		}
+		button {
+			background-color: #333;
+			border: none;
+			color: #fff;
+			cursor: pointer;
+			padding: 10px;
+			margin: 10px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Text Editor</h1>
+	</header>
+	<main>
+		<button id="new-file">New</button>
+		<button id="open-file">Open</button>
+		<button id="save-file">Save</button>
+		<textarea></textarea>
+	</main>
+	<script>
+		// New file button
+		document.getElementById("new-file").addEventListener("click", function() {
+			document.querySelector("textarea").value = "";
+		});
+
+		// Open file button
+		document.getElementById("open-file").addEventListener("click", function() {
+			document.querySelector("input[type='file']").click();
+		});
+
+		// Save file button
+		document.getElementById("save-file").addEventListener("click", function() {
+			var text = document.querySelector("textarea").value;
+			var filename = "text.txt";
+			var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+			saveAs(blob, filename);
+		});
+	</script>
+	<input type="file" style="display: none;">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<style >
+
+.container_tools {
+    max-width: 500px;
+}
+
+form > * {
+    margin: 0px 0;
+}
+
+.brand-logo {
+    font-weight: bold;
+  }
+
+input-field > select {
+display: block;
+/* position: absolute; /
+/ width: 0; /
+/ pointer-events: none; /
+/ height: 0; /
+/ top: 0; /
+/ left: 0; /
+/ opacity: 0; */
+}
+
+#password {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 0px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}
+
+label
+{
+    font-size: 20px;
+}
+
+button {
+    background-color: blue;
+    color: white;
+    /* add more styles as needed */
+  }
+
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+#generate {
+    margin-top: 20px;
+}
+
+#copy {
+    margin-top: 0px;
+}
+#canvas {
+    margin: 0 auto;
+    display: block;
+}
+
+
+</style >

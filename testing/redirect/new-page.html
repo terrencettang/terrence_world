@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Page</title>
+</head>
+<body>
+    <h1>New Page</h1>
+    <div id="main">
+        This is the new main section content.
+    </div>
+    <script>
+        // Get the main section content from localStorage
+        var oldContent = localStorage.getItem('main');
+        if (oldContent) {
+            document.getElementById('main').innerText = oldContent;
+            // Clear the localStorage
+            localStorage.removeItem('main');
+        }
+    </script>
+</body>
+</html>

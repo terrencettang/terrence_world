@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IP Address Checker</title>
+  </head>
+  <body>
+    <h1>Your IP Address:</h1>
+    <p id="ipAddress"></p>
+    <h2>Your ISP:</h2>
+    <p id="isp"></p>
+    <h2>Your City:</h2>
+    <p id="city"></p>
+    <h2>Your Country:</h2>
+    <p id="country"></p>
+    <script>
+      function getInfo(json) {
+        document.getElementById("ipAddress").innerHTML = json.ip;
+        document.getElementById("isp").innerHTML = json.org;
+        document.getElementById("city").innerHTML = json.city;
+        document.getElementById("country").innerHTML = json.country_name;
+      }
+      var script = document.createElement("script");
+      script.src = "https://ipapi.co/jsonp/?callback=getInfo";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    </script>
+  </body>
+</html>

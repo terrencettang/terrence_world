@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Terrence World1</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="author" content="Terrence Tang">
+  <meta name="description" content="A website dedicated to the fascinating world of Terrence">
+  <meta name="keywords" content="Philosophy, Mathematics, Science, Computer, Technology">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <!-- <meta name="msapplication-config" content="favicons/browserconfig.xml"> -->
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="scripts/css/all.min.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/ico/world_180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/ico/worldc_32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/ico/worldc_16x16.ico">
+  <link rel="manifest" href="scripts/site.webmanifest">
+  <!-- <link rel="mask-icon" href="https://projecteuler.net/favicons/safari-pinned-tab.svg" color="#da532c"> -->
+  <link rel="shortcut icon" href="img/ico/worldc_32x32.ico">
+  <link rel="stylesheet" type="text/css" href="scripts/css/style_main.css">
+  <link rel="stylesheet" type="text/css" href="scripts/css/style_default.css">
+  <link rel="stylesheet" type="text/css" href="scripts/css/style_about.css">
+</head>
+
+<!-- body start -->
+<body>
+
+<div id="container">
+
+<!-- header -->
+<header>
+  <div>
+     <h2>Terrence World</h2>
+  </div>
+ <div id="info_panel">
+   &nbsp;&nbsp;&nbsp;<a href="#"><img src="img/ico/search_32x32.png" alt="Search" title="Search" class="icon"></a>
+ </div>
+</header>
+
+<nav>
+<input type="checkbox" id="nav_toggle" class="nav_toggle">
+<label for="nav_toggle" class="nav_toggle_label"><i id="nav_toggle_icon" class="fas fa-bars"></i></label>
+   <ul>
+      <li><a href="about" id ="current">About</a></li>
+      <li><a href="sites">Sites</a></li>
+      <li><a href="apps">Apps</a></li>
+      <li><a href="mytools">MyTools</a></li>
+      <li><a href="learn">Learn</a></li>
+      <li><a href="news">News</a></li>
+   </ul>
+</nav>
+
+<div id="about_page">
+  <h2>About Terrence World</h2>
+  <br>
+  <img id="euler_portrait" src="img/world_320x320_1.png" alt="World Logo" class="float_right padding">
+  <h3>What is Terrence World?</h3>
+  <p>Terrence World is a personal website created by Terrence Tang, a Hong Kong-based enthusiast of philosophy, mathematics, science, computer technology and more.</p>
+  <h3>Who is Terrence Tang?</h3>
+  <p>Terrence Tang is a passionate learner and explorer at the intersection of multiple fields. With a deep curiosity and a drive to understand the world around him, Terrence has dedicated himself to the pursuit of knowledge and understanding. His interests include philosophy, mathematics, science, computer technology, and more.</p>
+  <h3>Why I write Terrence World?</h3>
+  <p>Terrence World is a personal project that allows Terrence to share his thoughts and ideas with the world, while also providing a space for him to reflect on his own learning and growth. While the primary purpose of the website is for Terrence's own personal development, he has decided to make it public in the hopes that it may be of interest or inspiration to others.</p>
+  <h3>More about me:</h3><br>
+  <div class="social">
+     <script>
+       var social_media_path = 'img/social_media/';
+       var social_media_links = [
+         { alt: 'Facebook', href: 'https://www.facebook.com/terrencettang' },
+         { alt: 'Instagram', href: 'https://www.instagram.com/terrencettang/' },
+         { alt: 'Twitter', href: 'https://twitter.com/terrencettang' },
+         { alt: 'Youtube', href: 'https://www.youtube.com/channel/UCY97ihGF8LQn_eGBNQdL72g' },
+         { alt: 'Weibo', href: 'https://weibo.com/u/1926353997' },
+         { alt: 'Reddit', href: 'https://www.reddit.com/user/terrencetang' },
+         { alt: 'Pinterest', href: 'https://ro.pinterest.com/terrencettang' },
+         { alt: 'Tumblr', href: 'https://www.tumblr.com/blog/terrencetangt-blog' },
+         { alt: 'LinkedIn', href: 'https://www.linkedin.com/in/terrencettang/' },
+         { alt: 'GitHub', href: 'https://github.com/terrencettang' },
+         { alt: 'Kaggle', href: 'https://www.kaggle.com/terrencetangt' }
+       ];
+       for (var i = 0; i < social_media_links.length; i++) {
+         var img = document.createElement('img');
+         img.alt = social_media_links[i].alt;
+         img.src = social_media_path + social_media_links[i].alt + '.png';
+         var a = document.createElement('a');
+         a.href = social_media_links[i].href;
+         a.target = '_blank';
+         a.appendChild(img);
+         document.querySelector('.social').appendChild(a);
+       }
+     </script>
+  </div>
+</div>
+
+<footer>
+  <div id="footer" class="noprint">
+  <b>Terrence World: </b><a href="pages/about/uncopyright.html">Uncopyright</a> | <a href="pages/about/privacy.html">Privacy Policy</a>
+  </div>
+</footer>
+
+<div id="modal_window">
+  <div id="modal_content" class="message_body">
+  <p>The page has been left unattended for too long and that link/button is no longer active. Please refresh the page.</p>
+  </div>
+</div>
+
+<script type="application/json" id="page_expire">86400</script>
+<script src="js/general.1681854148.js"></script>
+
+</div> <!--end_container-->
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Add Text</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="shortcut icon" href="../data/icon/photo-camera.ico" type="image/x-icon">
+    <link rel="icon" href="../data/icon/photo-camera.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../common_styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper blue">
+            <a href="#" class="brand-logo center">Photo Add Text</a>
+        </div>
+    </nav>
+    <div class="container">
+        <form>
+            <label for="fileInput">Upload a photo:</label>
+            <input type="file" id="fileInput" accept="image/*"><br>
+            <label for="textInput">Enter the text to be added:</label>
+            <textarea id="textInput"></textarea>
+            <label for="fontStyleInput">Choose Font Style:</label>
+            <select class="browser-default" id="fontStyleInput">
+                <option value="Arial">Arial</option>
+                <option value="Helvetica">Helvetica</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Impact">Impact</option>
+            </select>
+            <label for="fontSizeInput">Choose Font Size:</label>
+            <input type="number" id="fontSizeInput" min="1" max="500" value="100">
+            <label for="colorInput">Text color:</label>
+            <select class="browser-default" id="colorInput">
+                <option value="custom">Others</option>
+                <option value="#000000" style="background-color: #000000;">Black</option>
+                <option value="#ffffff" style="background-color: #ffffff;">White</option>
+                <option value="#ff0000" style="background-color: #ff0000;">Red</option>
+                <option value="#ffa500" style="background-color: #ffa500;">Orange</option>
+                <option value="#ffff00" style="background-color: #ffff00;">Yellow</option>
+                <option value="#008000" style="background-color: #008000;">Dark Green</option>
+                <option value="#008000" style="background-color: #00ff00;">Green</option>
+                <option value="#0000ff" style="background-color: #0000ff;">Blue</option>
+                <option value="#4b0082" style="background-color: #4b0082;">Indigo</option>
+                <option value="#a0a0a0" style="background-color: #a0a0a0;">Grey</option>
+
+            </select>
+            <label for="customColorInput">Other Colors:</label>
+            <input type="color" id="customColorInput" value="#ffffff"><br>
+            <button class="btn blue" type="button" onclick="merge()">Merge</button>
+        </form>
+    </div>
+    <br>
+    <canvas id="canvas"></canvas>
+    <script src="merge.js"></script>
+</body>
+</html>

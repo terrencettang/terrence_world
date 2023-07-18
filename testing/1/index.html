@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Terrence World</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <header>
+      <h1>Terrence World</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="testing.html">About</a></li>
+        <li><a href="https://www.example.com/">External Link</a></li>
+      </ul>
+    </nav>
+    <main id="main">
+      <p>Welcome to Terrence World!</p>
+    </main>
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var links = document.querySelectorAll('a');
+      links.forEach(function(link) {
+        if (link.getAttribute('href').endsWith('.html') && link.hostname === location.hostname) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            var url = link.getAttribute('href');
+            fetch(url)
+              .then(response => response.text())
+              .then(html => {
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(html, 'text/html');
+                var mainContent = doc.querySelector('#main');
+                document.querySelector('#main').innerHTML = mainContent.innerHTML;
+              });
+          });
+        }
+      });
+    });
+  </script>
+</html>

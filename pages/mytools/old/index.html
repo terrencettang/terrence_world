@@ -1,0 +1,86 @@
+<style>
+
+</style>
+
+<nav>
+   <input type="checkbox" id="nav_toggle" class="nav_toggle">
+   <label for="nav_toggle" class="nav_toggle_label"><i id="nav_toggle_icon" class="fas fa-bars"></i></label>
+   <ul id="tool-types" class="text-center">
+
+   </ul>
+ </nav>
+ <p>3</p>
+ <table id="tools">
+   <thead>
+     <tr>
+     </tr>
+   </thead>
+   <tbody></tbody>
+ </table>
+ 
+ <script>
+    function updateCurrent(href) {
+      // Find the previous current item and remove the "current" class
+      let currentEl = document.querySelector("#nav ul li a[id='current2']");
+      if (currentEl) {
+        currentEl.removeAttribute("id");
+      }
+      // Add the "current" class to the newly selected item
+      let newEl = document.querySelector(`#nav ul li a[href][innerText='${href}']`);
+      if (newEl) {
+        newEl.setAttribute("id", "current2");
+      }
+    }
+   (function($) {
+     // Load the tool data from the JSON file
+     const xhrObj = new XMLHttpRequest();
+     xhrObj.open("GET", "data/tools.json");
+     xhrObj.onload = () => {
+       if (xhrObj.status === 200) {
+         // Parse the JSON data
+         const tools = JSON.parse(xhrObj.responseText);
+ 
+         // Get the unique tool types
+         const toolTypes = [...new Set(tools.map(tool => tool.type))];
+ 
+         // Generate the HTML for the tool types
+         const toolTypesHtml = toolTypes.map(type => `
+           <li class="tool-type text-center">
+             <a href="#${type}" onclick="updateCurrent('${type}')">${type}</a>
+           </li>
+         `).join("");
+         $("#tool-types").html(toolTypesHtml);
+ 
+         // Add click event listeners to the tool type links
+         $("#tool-types a").on("click", function() {
+           // Get the selected tool type
+           const selectedToolType = $(this).attr("href").substring(1);
+ 
+           // Filter the tools by the selected type
+           const selectedTools = tools.filter(tool => tool.type === selectedToolType);
+ 
+           // Generate the HTML for the selected tools table
+           const selectedToolsHtml = `
+             <tr>
+               <th>Name</th>
+               <th>Description</th>
+             </tr>
+             ${selectedTools.map(tool => `
+               <tr>
+                 <td><a href="${tool.url}">${tool.name}</a></td>
+                 <td>${tool.description}</td>
+               </tr>
+             `).join("")}
+           `;
+ 
+           // Clear the table content before updating it with the new tool data
+           $("#tools tbody").empty().append(selectedToolsHtml);
+ 
+           // Prevent the default behavior of the anchor link
+           return false;
+         });
+       }
+     };
+     xhrObj.send();
+   })(jQuery);
+ </script>

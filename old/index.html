@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Terrence World</title>
@@ -7,12 +8,15 @@
   <meta name="keywords" content="Philosophy, Mathematics, Science, Computer, Technology">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="msapplication-TileColor" content="#da532c">
+  <!-- <meta name="msapplication-config" content="favicons/browserconfig.xml"> -->
   <meta name="theme-color" content="#ffffff">
 
   <link rel="stylesheet" href="scripts/css/all.min.css">
   <link rel="apple-touch-icon" sizes="180x180" href="img/ico/world_180x180.png">
   <link rel="icon" type="image/png" sizes="32x32" href="img/ico/worldc_32x32.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="img/ico/worldc_16x16.ico">
+  <link rel="manifest" href="scripts/site.webmanifest">
+  <!-- <link rel="mask-icon" href="https://projecteuler.net/favicons/safari-pinned-tab.svg" color="#da532c"> -->
   <link rel="shortcut icon" href="img/ico/worldc_32x32.ico">
   <link rel="stylesheet" type="text/css" href="scripts/css/style_main.css">
   <link rel="stylesheet" type="text/css" href="scripts/css/style_default.css">
@@ -25,26 +29,26 @@
 <div id="container">
 
 <!-- header -->
-<header id ="header">
+<header>
   <div>
-    <h2>Terrence World</h2>
+     <h2>Terrence World</h2>
   </div>
-  <div id="info_panel">
-    &nbsp;&nbsp;&nbsp;<a href="#"><img src="img/ico/search_32x32.png" alt="Search" title="Search" class="icon"></a>
-  </div>
+ <div id="info_panel">
+   &nbsp;&nbsp;&nbsp;<a href="#"><img src="img/ico/search_32x32.png" alt="Search" title="Search" class="icon"></a>
+ </div>
 </header>
 
-<nav id = "nav">
+<nav>
 <input type="checkbox" id="nav_toggle" class="nav_toggle">
 <label for="nav_toggle" class="nav_toggle_label"><i id="nav_toggle_icon" class="fas fa-bars"></i></label>
-  <ul>
-      <li><a href="pages/about/index.html" id="current">About</a></li>
-      <li><a href="pages/sites/index.html">Sites</a></li>
-      <li><a href="pages/apps/index.html">Apps</a></li>
-      <li><a href="pages/mytools/index.html">MyTools</a></li>
-      <li><a href="pages/learn/index.html">Learn</a></li>
-      <li><a href="pages/news/index.html">News</a></li>
-  </ul>
+   <ul>
+      <li><a href="about">About</a></li>
+      <li><a href="sites">Sites</a></li>
+      <li><a href="apps">Apps</a></li>
+      <li><a href="mytools">MyTools</a></li>
+      <li><a href="learn">Learn</a></li>
+      <li><a href="news">News</a></li>
+   </ul>
 </nav>
 
 <main id="main">
@@ -52,15 +56,14 @@
 </main>
 
 <footer>
-  <div id="footer">
+  <div id="footer" class="noprint">
   <b>Terrence World: </b><a href="pages/about/uncopyright.html">Uncopyright</a> | <a href="pages/about/privacy.html">Privacy Policy</a>
   </div>
 </footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="scripts/js/load_main_v1.js"></script>
+<script src="scripts/js/switch_nav.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<script src="scripts/js/load_pages.js"></script>
-<script src="scripts/js/redirect_for_index.js"></script>
-<script src="scripts/js/load_main_pages.js"></script>
 </div> <!--end_container-->
 </body>
 </html>

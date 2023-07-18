@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Text Editor</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 10px;
+			text-align: center;
+		}
+		main {
+			padding: 20px;
+			text-align: center;
+		}
+		.tab {
+			display: none;
+		}
+		.tab.active {
+			display: block;
+		}
+		.tab-link {
+			background-color: #eee;
+			border: none;
+			color: #333;
+			cursor: pointer;
+			padding: 10px;
+			margin: 10px;
+			font-weight: bold;
+		}
+		.tab-link.active {
+			background-color: #333;
+			color: #fff;
+		}
+		textarea {
+			border: 1px solid #ccc;
+			height: 300px;
+			padding: 10px;
+			width: 100%;
+			resize: none;
+		}
+		button {
+			background-color: #333;
+			border: none;
+			color: #fff;
+			cursor: pointer;
+			padding: 10px;
+			margin: 10px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Text Editor</h1>
+	</header>
+	<main>
+		<div class="tab active" id="tab1">
+			<textarea></textarea>
+		</div>
+		<div class="tab-links">
+			<button class="tab-link active" data-tab="tab1">Tab 1</button>
+		</div>
+		<button id="new-tab">New Tab</button>
+		<button id="open-file">Open File</button>
+		<button id="save-file">Save File</button>
+	</main>
+	<script>
+		var tabCounter = 1;
+
+		// New tab button
+		document.getElementById("new-tab").addEventListener("click", function() {
+			tabCounter++;
+			var newTab = document.createElement("div");
+			newTab.classList.add("tab");
+			newTab.setAttribute("id", "tab" + tabCounter);
+			var newTextArea = document.createElement("textarea");
+			newTab.appendChild(newTextArea);
+			document.querySelector("main").insertBefore(newTab, document.querySelector(".tab-links"));
+			var newTabLink = document.createElement("button");
+			newTabLink.classList.add("tab-link");
+			newTabLink.setAttribute("data-tab", "tab" + tabCounter);
+			newTabLink.innerHTML = "Tab " + tabCounter;
+			newTabLink.addEventListener("click", function() {
+				activateTab(this);
+			});
+			document.querySelector(".tab-links").appendChild(newTabLink);
+			activateTab(newTabLink);
+		});
+
+		// Open file button
+		document.getElementById("open-file").addEventListener("click", function() {
+			var activeTab = document.querySelector(".tab.active");
+			var fileInput = document.createElement("input");
+			fileInput.setAttribute("type", "file");
+			fileInput.addEventListener("change", function() {
+				var reader = new FileReader();
+				reader.onload = function() {
+					activeTab.querySelector("textarea").value = reader.result;
+				}
+				reader.readAsText(this.files[0]);
+			});
+			fileInput.click();
+		});
+
+		// Save file button
+		document.getElementById("save-file").addEventListener("click", function() {
+			var activeTab = document.querySelector(".tab.active");
+			var text = activeTab.querySelector("textarea").value;
+			var filename = "text.txt";
+			var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+			saveAs(blob, filename);
+		});
+
+		// Activate tab
+		function activateTab(tabLink) {
+			var tabId = tabLink.getAttribute("data-tab");
+			var tabs = document.querySelectorAll(".tab");
+			for (var j = 0; j < tabs.length; j++) {
+				tabs[j].classList.remove("active");
+			}
+			document.getElementById(tabId).classList.add("active");
+			var tabLinks = document.querySelectorAll(".tab-link");
+			for (var j = 0; j < tabLinks.length; j++) {
+				tabLinks[j].classList.remove("active");
+			}
+			tabLink.classList.add("active");
+		}
+
+		// Tab links
+		var tabLinks = document.querySelectorAll(".tab-link");
+		for (var i = 0; i < tabLinks.length; i++) {
+			tabLinks[i].addEventListener("click", function() {
+				activateTab(this);
+			});
+		}
+	</script>
+	<input type="file" style="display:none;" id="file-input">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</body>
+</html>

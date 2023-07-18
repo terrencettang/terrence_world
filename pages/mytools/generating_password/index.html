@@ -1,0 +1,103 @@
+<main id = "main">
+  <div id ="content">
+  <nav id = "nav_sub">
+    <ul>
+      <li><a href="#">Text</a></li>
+    </ul>
+  </nav>
+  <h2 class="title">Password Generator</h2>
+
+  <table class = 'noborder'>
+    <tr>
+      <td class="left noborder"><label for="length">Password Length:</label></td>
+      <td class="right noborder"><input type="number" id="length" name="length" min="8" max="128" value="16"></td>
+    </tr>
+    <tr>
+      <td class="left noborder"><label for="uppercase">Include Uppercase Letters:</label></td>
+      <td class="right noborder"><input type="checkbox" id="uppercase" name="uppercase" checked></td>
+    </tr>
+    <tr>
+      <td class="left noborder"><label for="lowercase">Include Lowercase Letters:</label></td>
+      <td class="right noborder"><input type="checkbox" id="lowercase" name="lowercase" checked></td>
+    </tr>
+    <tr>
+      <td class="left noborder"><label for="numbers">Include Numbers:</label></td>
+      <td class="right noborder"><input type="checkbox" id="numbers" name="numbers" checked></td>
+    </tr>
+    <tr>
+      <td class="left noborder"><label for="symbols">Include Symbols:</label></td>
+      <td class="right noborder"><input type="checkbox" id="symbols" name="symbols" checked></td>
+    </tr>
+    <tr>
+      <td class="left noborder"><label for="exclude-similar">Exclude Similar Characters:</label></td>
+      <td class="right noborder"><input type="checkbox" id="exclude-similar" name="exclude-similar" checked></td>
+    </tr>
+    <tr>
+      <td class="left noborder"><label for="exclude-ambiguous">Exclude Ambiguous Characters:</label></td>
+      <td class="right noborder"><input type="checkbox" id="exclude-ambiguous" name="exclude-ambiguous" checked></td>
+    </tr>
+  </table>
+
+  <div class="containers">
+      <div class="center">
+        <button type="button" class="btn center" id="generate" onclick="generatePassword()">Generate Password</button>
+      </div>
+      <div class="center">
+        <input class="center" type="text" id="password" readonly>
+      </div>
+      <div class="center">
+        <button type="button" class="btn center" id="copy" onclick="copyPassword()">Copy to Clipboard</button>
+      </div>
+  </div>
+    <script>
+       var lengthInput = document.getElementById('length');
+      lengthInput.addEventListener('keyup', function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          generatePassword();
+        }
+      });
+      function generatePassword() {
+        const length = parseInt(document.getElementById('length').value);
+        if (length < 8 || length > 128) {
+            alert('Password length must be between 8 and 128.');
+            return;
+        }
+        var uppercase = document.getElementById('uppercase').checked;
+        var lowercase = document.getElementById('lowercase').checked;
+        var numbers = document.getElementById('numbers').checked;
+        var symbols = document.getElementById('symbols').checked;
+         excludeSimilar = document.getElementById('exclude-similar').checked;
+        var excludeAmbiguous = document.getElementById('exclude-ambiguous').checked;
+        var uppercaseChars = 'ABCDEFGHJKLMNPQRSTUVWXYZ'; // Excludes I, L, O
+        var lowercaseChars = 'abcdefghijkmnopqrstuvwxyz'; // Excludes l
+        var numberChars = '23456789'; // Excludes 0, 1
+        var symbolChars = '@#$%';
+        var ambiguousChars = '{}[]()/\\\'"`~,;:.<>';
+        let chars = '';
+        if (uppercase) chars += uppercaseChars;
+        if (lowercase) chars += lowercaseChars;
+        if (numbers) chars += numberChars;
+        if (symbols) chars += symbolChars;
+        if (excludeSimilar) {
+          chars = chars.replace(/[iIlLoO10]/g, ''); // Remove similar characters
+        }
+        if (excludeAmbiguous) {
+          chars = chars.replace(new RegExp('[' + ambiguousChars.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ']', 'g'), ''); // Remove ambiguous characters
+        }
+        let password = '';
+        for (let i = 0; i < length; i++) {
+          password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById('password').value = password;
+      }
+      function copyPassword() {
+        var password = document.getElementById('password');
+        password.select();
+        document.execCommand('copy');
+        M.toast({html: 'Password copied to clipboard!'});
+      }
+    </script>
+  </div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>
