@@ -1,4 +1,23 @@
 :root {
+   --font-default: "Segoe UI", Arial, sans-serif;
+   --font-monospace: "Lucida Consolas", "Consolas", "Courier New", monospace;
+   --color-white: #fff;
+   --color-orange: #f93;
+   --color-dark-orange: #f71;
+   --color-red: #d00;
+   --color-light-red: #e44;
+   --color-green: #090;
+   --color-blue: #009;
+   --color-light-blue: #07f;
+   --color-lighter-blue: #6bf;
+   --color-brown: #6b4e3d;
+   --color-light-brown: #b69481;
+   --color-black: #000;
+   --color-dark-grey: #333;
+   --color-light-grey: #bbb;
+   --color-pale-pink: #ffeaea;
+   --color-dark-green: #060;
+   /* default */
    --color-background-default: #fff;
    --color-background-almost-default: #f5f5f5;
    --color-background-variation-1: #eee;
@@ -24,24 +43,39 @@ table {
    margin: 0px auto;
    width: 80%;
 }
-table.noborder {
-   border-collapse: collapse;
-   border: none;
-   width: 40%;
- }
 th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: center;
-}
-th.noborder, td.noborder {
-   border: none;
+   border: 1px solid black;
    padding: 8px;
    text-align: center;
 }
 th {
-    background-color: #ddd;
-    font-weight: bold;
+   text-align: center;
+}
+   
+td {
+   text-align: left;
+}
+table.noborder {
+   margin-top: 0px;
+   margin-bottom: 0px;
+   border-collapse: collapse;
+   border: none;
+   margin: 0px auto;
+   width: 80%;
+ }
+table.bold {
+   font-weight: bold;
+}
+table.noborder td,
+table.noborder th {
+  border: none;
+  padding: 8px;
+}
+table.width40{
+   width: 40%;
+}
+table.width50{
+   width: 50%;
 }
 input[type="checkbox"] {
    transform: scale(1.5);
@@ -53,6 +87,27 @@ input[type="checkbox"]:checked {
 }
 input[type="number"] {
    font-size: 1.1em;
+}
+textarea {
+   border: 1px solid #ccc;
+   height: 300px;
+   padding: 10px;
+   width: 100%;
+   resize: none;
+}
+form > * {
+   margin: 10px 0;
+}
+label {
+   font-size: 16px;
+   color: var(--color-text-variation-1)
+}
+
+/* self defined */
+.containers {
+   margin: 0 auto;
+   text-align: left;
+   width: 50%;
 }
 .btn {
    font-size: 16px;
@@ -68,15 +123,29 @@ input[type="number"] {
    background-color: var(--color-orange);
    color: var(--color-background-default);
  }
-
-form > * {
-    margin: 10px 0;
+.btn:active {
+   background-color: var(--color-orange);
+   color: var(--color-background-default);
 }
-label {
-    font-size: 16px;
-    color: var(--color-text-variation-1)
+.btn_s {
+   font-size: 14px;
+   background-color: var(--color-background-variation-1);
+   padding: 8px 12px;
+   border: none;
+   margin-bottom: 7px;
+   margin-right: 5px;
+   color: var(--color-text-default);
+   border-radius: 5px;
+   transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
 }
-
+.btn_s.active {
+   background-color: var(--color-orange);
+   color: var(--color-background-default);
+}
+.btn_s:hover {
+   background-color: var(--color-orange);
+   color: var(--color-background-default);
+ }
 #password {
    font-size: 20px;
    text-align: center;
@@ -84,23 +153,25 @@ label {
    padding: 20px;
    background-color: #f2f2f2;
    border-radius: 10px;
-   width: 30%
+   width: 80%
 }
-
 #generate {
     margin-top: 10px;
 }
-
 #copy {
     margin-top: 10px;
 }
-
 .nav_sub {
    @extend .nav;
    /* Additional styles for nav_sub go here */
  }
-
 .terrence_world_logo {
    float: right;
    padding-left: 10px;
+}
+.tab {
+   display: none;
+}
+.tab.active {
+   display: block;
 }

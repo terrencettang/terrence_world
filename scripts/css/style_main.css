@@ -589,9 +589,6 @@ nav #highlight {
    content: "\002B";
    clear: both;
 }
-.active:after {
-   content: "\2212";
-}
 .collapsible_content {
    margin: 10px;
    max-height: 0;
@@ -974,7 +971,7 @@ nav #highlight {
    margin-top: 50px;
    text-align: center;
    padding: 20px;
-   font-size: 90%;
+   font-size: 100%;
 }
 #content {
    padding: 10px;

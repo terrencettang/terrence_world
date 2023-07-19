@@ -1,58 +1,87 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>IP Address Checker</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="../common_styles.css">
-    <link rel="shortcut icon" href="../data/icon/ip.ico" type="image/x-icon">
-    <link rel="icon" href="../data/icon/ip.ico" type="image/x-icon">
-</head>
-<body>
-    <nav>
-        <div class="nav-wrapper blue">
-            <a href="#" class="brand-logo center">IP Address Checker</a>
-        </div>
+<main id = "main">
+<div id ="content">
+    <nav id = "nav_sub">
+        <ul>
+        <li><a href="#">Text</a></li>
+        </ul>
     </nav>
-    <div class="container">
-        <table>
+    <h2 class="title">IP Check</h2>
+    <div class="containers center">
+        <table class="noborder bold">
             <tr>
-                <th>Your IP Address:</th>
+                <td>Your IP Address:</td>
                 <td id="ipAddress"></td>
             </tr>
             <tr>
-                <th>IP version:</th>
+                <td>IP version:</td>
                 <td id="version"></td>
             </tr>
             <tr>
-                <th>Your ISP:</th>
+                <td>Your ISP:</td>
                 <td id="isp"></td>
             </tr>
             <tr>
-                <th>Your City:</th>
+                <td>Your City:</td>
                 <td id="city"></td>
             </tr>
             <tr>
-                <th>Your Country:</th>
+                <td>Your Country:</td>
                 <td id="country"></td>
             </tr>
             <tr>
-                <th>Country Code (2 digit):</th>
+                <td>Country Code (2 digit):</td>
                 <td id="country_code"></td>
             </tr>
             <tr>
-                <th>Country Code (3 digit):</th>
+                <td>Country Code (3 digit):</td>
                 <td id="country_code_iso3"></td>
             </tr>
             <tr>
-                <th>Postal:</th>
+                <td>Postal:</td>
                 <td id="postal"></td>
             </tr>
             <tr>
-                <th>Time Zone:</th>
-                <td id="utc_offset"></td>
+                <td>Time Zone:</td>
+                <td id="utd_offset"></td>
             </tr>
         </table>
     </div>
-    <script>script.js</script>
-</body>
-</html>
+    <script>
+        function getInfo(json) {
+            document.getElementById("ipAddress").innerHTML = json.ip;
+            document.getElementById("version").innerHTML = json.version;
+            document.getElementById("isp").innerHTML = json.org;
+            document.getElementById("country_code").innerHTML = json.country_code;
+            document.getElementById("country_code_iso3").innerHTML = json.country_code_iso3;
+            ;
+            document.getElementById("utd_offset").innerHTML = json.utd_offset;
+            if (json.postal === null) {
+                document.getElementById("postal").innerHTML = "NA"
+            }
+            else {
+                document.getElementById("postal").innerHTML = json.postal
+            }
+            if (json.country_code === "HK") {
+                document.getElementById("city").innerHTML = json.country_name;
+                document.getElementById("country").innerHTML = "China";
+            }
+            else if (json.country_code === "MO"){
+                document.getElementById("city").innerHTML = json.country_name;
+                document.getElementById("country").innerHTML = "China";
+            }
+            else if (json.country_code === "TW"){
+                document.getElementById("city").innerHTML = json.country_name;
+                document.getElementById("country").innerHTML = "China";
+            }
+            else {
+                document.getElementById("city").innerHTML = json.city;
+                document.getElementById("country").innerHTML = json.country_name;
+            }
+        }
+        var script = document.createElement("script");
+        script.src = "https://ipapi.co/jsonp/?callback=getInfo";
+        document.getElementsByTagName("head")[0].appendChild(script);
+    </script>
+</div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>

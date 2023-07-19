@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Photo Add Text</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="shortcut icon" href="../data/icon/photo-camera.ico" type="image/x-icon">
-    <link rel="icon" href="../data/icon/photo-camera.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../common_styles.css">
-</head>
-<body>
-    <nav>
-        <div class="nav-wrapper blue">
-            <a href="#" class="brand-logo center">Photo Add Text</a>
-        </div>
+<main id = "main">
+<div id ="content">
+    <nav id = "nav_sub">
+        <ul>
+            <li><a href="#">Photo</a></li>
+        </ul>
     </nav>
-    <div class="container">
+    <h2 class="title">Photo add Text</h2>
+    <div class="containers center">
         <form>
             <label for="fileInput">Upload a photo:</label>
             <input type="file" id="fileInput" accept="image/*"><br>
@@ -55,6 +47,78 @@
     </div>
     <br>
     <canvas id="canvas"></canvas>
-    <script src="merge.js"></script>
-</body>
-</html>
+    <script>
+        var title_ = document.querySelector(".title");
+        var title_id = title_.getAttribute('id');
+        if (title_id === null){
+            let canvas = document.getElementById("canvas");
+            let ctx = canvas.getContext("2d");
+            let img, text, fontSize, fontColor, fontStyle;
+
+            fontSize = 100
+
+            function merge() {
+                if (img && text) {
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    ctx.font = fontSize  + "px " + fontStyle;
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.fillStyle = fontColor;
+                    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+                }
+            }
+
+            function setFontStyle() {
+                fontStyle = document.getElementById("fontStyleInput").value;
+            }
+
+            document.getElementById("fileInput").addEventListener("change", function () {
+                img = new Image();
+                img.onload = function () {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                };
+                img.src = URL.createObjectURL(this.files[0]);
+            });
+
+            document.getElementById("textInput").addEventListener("input", function () {
+                text = this.value;
+            });
+
+            document.getElementById("fontSizeInput").addEventListener("input", function () {
+                fontSize = parseInt(this.value);
+            });
+
+            document.getElementById("colorInput").addEventListener("change", function () {
+                if (this.value === "custom") {
+                    document.getElementById("customColorInput").style.display = "block";
+                    fontColor = document.getElementById("customColorInput").value;
+                } else {
+                    document.getElementById("customColorInput").style.display = "none";
+                    fontColor = this.value;
+                }
+            });
+
+            document.getElementById("customColorInput").addEventListener("input", function () {
+                fontColor = this.value;
+            });
+
+            document.getElementById("fontStyleInput").addEventListener("change", function () {
+                setFontStyle();
+            });
+
+            setFontStyle(); // set default font style
+
+            // When the window is resized, clear the canvas and redraw the image and text
+            window.addEventListener("resize", function () {
+                if (img && text) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    merge();
+                }
+            });
+        }
+    </script>
+</div>
+</main>
