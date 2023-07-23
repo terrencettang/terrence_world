@@ -1,0 +1,79 @@
+<main id = "main">
+<div id ="content">
+    <nav id = "nav_sub">
+        <ul>
+            <li><a href="#">Text</a></li>
+        </ul>
+    </nav>
+    <h2 class="title">Random Identity Generator</h2>
+    <div class="containers">
+        <form class = "name_form">
+            <table class="table">
+            <tr>
+                <td><label for="sex-select">Sex:</label></td>
+                <td><select id="sex-select" name="sex-select">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="R">Random</option>
+                </select></td>
+            </tr>
+            <tr>
+            <td><label for="algorithm-select">Algorithm:</label></td>
+            <td><select id="algorithm-select" name="algorithm-select">
+                <option value="equal">Equal Chance</option>
+                <option value="higher-count">Higher Count</option>
+                <option value="lower-count">Lower Count</option>
+            </select></td>
+            </tr>
+            <tr>
+                <td><label for="min-age">Minimum Age:</label></td>
+                <td><input type="number" id="min-age" name="min-age" value="18"></td>
+            </tr> 
+            <tr>
+                <td><label for="max-age">Maximum Age:</label></td>
+                <td><input type="number" id="max-age" name="max-age" value="28"></td>
+            </tr> 
+            <tr>
+                <td><label for="country-select">Country:</label></td>
+                <td><select id="country-select" name="country-select"></select></td>
+            </tr>
+            <tr >
+                <td style="border-right: none;"></td>
+                <td id="buton" style="border-left: none;"><button style="margin-bottom: 0px;" class="btn" type="submit" id="submit_gi">Generate Name</button></td>
+            </tr>
+            <tr>
+                <td><label for="first-name-input">First Name:</label></td>
+                <td><input type="text" id="first-name-input" placeholder=""></td>
+            </tr>
+            <tr>
+                <td><label for="last-name-input">Last Name:</label></td>
+                <td><input type="text" id="last-name-input" placeholder=""></td>
+            </tr>
+            <tr>
+                <td><label for="day">Day:</label></td>
+                <td><input type="number" id="day" name="day"></td>
+            </tr>
+            <tr>
+                <td><label for="month">Month:</label></td>
+                <td><input type="number" id="month" name="month"></td>
+            </tr>
+            <tr>
+                <td><label for="year">Year:</label></td>
+                <td><input type="number" id="year" name="year"></td>
+            </tr>
+            </table>
+        </form>
+      </div>
+    <script>
+        var containers_ = document.querySelector(".title");
+        var containers_id = containers_.getAttribute('id');
+        if (containers_id === null){
+            containers_.setAttribute("id", "added");
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/mytools/gen_identity.js';
+            document.getElementById('main').appendChild(script);
+        }
+    </script>
+</div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>

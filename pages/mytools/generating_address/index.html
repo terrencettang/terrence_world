@@ -1,0 +1,99 @@
+<main id = "main">
+    <div id ="content">
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#">Text</a></li>
+            </ul>
+        </nav>
+    <h2 class="title">Random Address Generator</h2>
+    <div class="containers">
+        <label for="country">Country:</label>
+        <select id="country">
+        </select>
+        <br>
+        <button onclick="generateAddress()">Generate Address</button>
+        <br>
+        <textarea id="address" rows="4" cols="50"></textarea>
+        <br>
+        <button onclick="copyAddress()">Copy Address</button>
+      </div>
+    </div>
+
+    <script>
+        window.onload = loadCountries;
+        async function loadCountries() {
+            // Load the CSV data
+            const response = await fetch(location.origin +'/terrence_world/data/csv/country-codes.csv');
+            const text = await response.text();
+
+            // Parse the CSV data into an array of objects
+            const rows = text.trim().split('\n');
+            const headers = rows.shift().split(',');
+            const data = rows.map(row => {
+                const values = row.split(',');
+                return headers.reduce((obj, key, index) => {
+                obj[key] = values[index];
+                return obj;
+                }, {});
+            });
+
+            // Generate the options for the dropdown menu
+            const countryElement = document.getElementById('country');
+            countryElement.innerHTML = '';
+            data.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country['Alpha-2'];
+                option.textContent = country.Name;
+                countryElement.appendChild(option);
+            });
+        }
+        async function generateAddress() {
+            // Get the selected country name
+            const countryElement = document.getElementById('country');
+            const countryName = countryElement.value;
+
+            // Call the getRandomAddress() function with the selected country name
+            const address = await getRandomAddress(countryName);
+
+            // Update the HTML page with the generated address
+            const addressElement = document.getElementById('address');
+            addressElement.value = address;
+            }
+      function copyAddress() {
+        // Get the address from the textbox
+        const addressElement = document.getElementById('address');
+        const address = addressElement.value;
+
+        // Copy the address to the clipboard
+        navigator.clipboard.writeText(address)
+          .then(() => {
+            alert('Address copied to clipboard!');
+          })
+          .catch(err => {
+            console.error('Failed to copy address: ', err);
+          });
+      }
+
+      async function getRandomAddress(countryName) {
+        // Encode the country name for use in the API request
+        const encodedCountry = encodeURIComponent(countryName);
+
+        // Build the API request URL for the selected country
+        const url = `https://nominatim.openstreetmap.org/search.php?q=${encodedCountry}&format=jsonv2&limit=1`;
+
+        // Make the API request and parse the JSON response
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+
+        // Extract the address components from the response
+        const { address } = data[0] || {};
+
+        // Build the address string from the available address components
+        const addressString = Object.values(address || {}).join(', ');
+
+        return addressString;
+        }
+    </script>
+  </body>
+</html>

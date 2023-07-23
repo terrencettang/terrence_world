@@ -1876,13 +1876,11 @@ table.center {
 .w400 {
    width: 400px;
 }
-
 .truncate {
    overflow: hidden;
    white-space: nowrap;
    text-overflow: ellipsis;
 }
-
 .no_wrap {
    white-space: nowrap;
    display: inline-block;

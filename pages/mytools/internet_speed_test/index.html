@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Internet Speed Test</title>
+  </head>
+  <body>
+    <h1>Internet Speed Test</h1>
+    <form>
+      <button type="button" id="test-button">Test Speed</button>
+      <div id="loading-spinner">Loading...</div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/speed-test-js/dist/speed-test.min.js"></script>
+    <script>
+      const testButton = document.getElementById('test-button');
+      testButton.addEventListener('click', testSpeed);
+
+      async function testSpeed() {
+        // Show the loading spinner
+        const loadingSpinner = document.getElementById('loading-spinner');
+        loadingSpinner.style.display = 'block';
+
+        // Run the speed test
+        const speedTest = new SpeedTest();
+        const speed = await speedTest.getSpeed();
+
+        // Hide the loading spinner
+        loadingSpinner.style.display = 'none';
+
+        // Display the results
+        alert(`Download speed: ${speed.download} Mbps\nUpload speed: ${speed.upload} Mbps`);
+      }
+    </script>
+  </body>
+</html>

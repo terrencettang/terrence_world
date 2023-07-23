@@ -8,10 +8,15 @@ function generateToolTypesHtml(tools) {
     <li class="tool-type text-center">
         <a href="#${type}" onclick="updateCurrent('${type}')">${type}</a>
     </li>
-    `).join("");
+`).join("");
 
     return toolTypesHtml;
 }
+
+function updateCurrent(type) {
+    $("#tool-types a").removeClass("current");
+    $(`#tool-types a[href='#${type}']`).addClass("current");
+  }
 
 function updateSelectedToolsTable(tools) {
     // Get the selected tool type
@@ -73,3 +78,8 @@ xhrObj.onload = () => {
 };
 xhrObj.send();
 })(jQuery);
+
+function updateCurrent(type) {
+    $("#tool-types a").removeClass("current");
+    $(`#tool-types a[href='#${type}']`).addClass("current");
+  }

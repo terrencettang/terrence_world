@@ -22,7 +22,7 @@
    --color-background-almost-default: #f5f5f5;
    --color-background-variation-1: #eee;
    --color-background-variation-2: #bbb;
-   --color-text-default: #111;
+   --color-text-default: #222;
    --color-text-variation-1: #333;
    --color-text-variation-2: #555;
    --color-text-link: #6b4e3d;
@@ -38,7 +38,7 @@ h2.title {
 }
 table {
    margin-top: 0px;
-   margin-bottom: 0px;
+   margin-bottom: 10px;
    border-collapse: collapse;
    margin: 0px auto;
    width: 80%;
@@ -77,6 +77,9 @@ table.width40{
 table.width50{
    width: 50%;
 }
+select {
+   font-size: 16px;
+ }
 input[type="checkbox"] {
    transform: scale(1.5);
  }
@@ -100,13 +103,21 @@ form > * {
 }
 label {
    font-size: 16px;
-   color: var(--color-text-variation-1)
+   color: var(--color-text-variation-1);
 }
-
-/* self defined */
+/* self defined class*/
 .containers {
    margin: 0 auto;
    text-align: left;
+   width: 50%;
+   justify-content: center;
+   align-items: center;
+}
+.photo_canvas_containers {
+   margin: 0 auto;
+   display: flex;
+   justify-content: center;
+   align-items: center;
    width: 50%;
 }
 .btn {
@@ -146,6 +157,29 @@ label {
    background-color: var(--color-orange);
    color: var(--color-background-default);
  }
+.nav_sub {
+   @extend .nav;
+   /* Additional styles for nav_sub go here */
+ }
+.terrence_world_logo {
+   float: right;
+   padding-left: 10px;
+}
+.tab {
+   display: none;
+}
+.tab.active {
+   display: block;
+}
+.name_form {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+.time_display {
+   color: var(--color-text-variation-1);
+}
+/* self defined id*/
 #password {
    font-size: 20px;
    text-align: center;
@@ -161,17 +195,16 @@ label {
 #copy {
     margin-top: 10px;
 }
-.nav_sub {
-   @extend .nav;
-   /* Additional styles for nav_sub go here */
+#photo_canvas {
+   max-width: 500;
+   max-height: 500;
+   margin-left: auto;
+   margin-right: auto;
  }
-.terrence_world_logo {
-   float: right;
-   padding-left: 10px;
-}
-.tab {
-   display: none;
-}
-.tab.active {
-   display: block;
+#photo_add_textInput {
+   border: 1px solid #ccc;
+   height: 100px;
+   padding: 10px;
+   width: 100%;
+   resize: none;
 }

@@ -1,26 +1,44 @@
 [
-    {
-       "name": "Password Generator",
-       "description": "Generating a random password",
-       "url": "pages/mytools/generating_password/index.html",
-       "type": "Text"
-    },
-    {
-       "name": "Photo Add Text",
-       "description": "Adding Text into the center of the photo",
-       "url": "pages/mytools/photo_add_text/index.html",
-       "type": "Photo"
-    },
-    {
-       "name": "IP Checker",
-       "description": "Check Your IP Address",
-       "url": "pages/mytools/ip_check/index.html",
-       "type": "Web"
-    },
-    {
-       "name": "Text Editor",
-       "description": "For editing Text Files",
-       "url": "pages/mytools/text_editor/index.html",
-       "type": "Text"
-    }
- ]
+   {
+      "name": "Password Generator",
+      "description": "Generating a random password",
+      "url": "pages/mytools/generating_password/index.html",
+      "type": "Text"
+   },
+   {
+      "name": "Identity Generator",
+      "description": "Generating a random idtentity",
+      "url": "pages/mytools/generating_identity/index.html",
+      "type": "Text"
+   },
+   {
+      "name": "Photo Add Text",
+      "description": "Adding Text into the center of the photo",
+      "url": "pages/mytools/photo_add_text/index.html",
+      "type": "Photo"
+   },
+   {
+      "name": "IP Checker",
+      "description": "Check Your IP Address",
+      "url": "pages/mytools/ip_check/index.html",
+      "type": "Web"
+   },
+   {
+      "name": "Text Editor",
+      "description": "For editing Text Files",
+      "url": "pages/mytools/text_editor/index.html",
+      "type": "Text"
+   },
+   {
+      "name": "Country Code",
+      "description": "Country Code Lookup Table",
+      "url": "pages/mytools/country_code/index.html",
+      "type": "Others"
+   },
+   {
+      "name": "Stop Watch",
+      "description": "Stop Watch",
+      "url": "pages/mytools/stopwatch/index.html",
+      "type": "Others"
+   }
+]
