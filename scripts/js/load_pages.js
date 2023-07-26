@@ -8,7 +8,7 @@ $(document).ready(function() {
         link.startsWith('pages') || link.startsWith('.') || link.startsWith('scripts') || link.startsWith('data') ||
         link.startsWith('img')) {
       // Internal links, load the #main section
-      console.log('internal: ' + link);
+      // console.log('internal: ' + link);
       e.preventDefault();
       var pathname = location.origin + "/terrence_world/" + link;
       $.get(pathname, function(html) {
@@ -21,7 +21,7 @@ $(document).ready(function() {
       });
     }
     else{
-      console.log('external');
+      // console.log('external');
     }
   });
 });

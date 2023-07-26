@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Currency Exchange Rates</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <h1>Currency Exchange Rates</h1>
+  <table id="exchange-rates">
+    <thead>
+      <tr>
+        <th>Currency</th>
+        <th>Exchange Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <script>
+    // Define the function to fetch the exchange rates data
+    function fetchExchangeRates() {
+      const apiUrl = "https://api.exchangeratesapi.io/latest";
+
+      axios.get(apiUrl)
+        .then(function(response) {
+          const exchangeRates = response.data.rates;
+          const exchangeRateTable = document.getElementById("exchange-rates");
+          console.log(response);
+
+          // Add rows to the table for each exchange rate
+          for (const currency in exchangeRates) {
+            const row = exchangeRateTable.insertRow();
+            const currencyCell = row.insertCell();
+            const exchangeRateCell = row.insertCell();
+            currencyCell.innerHTML = currency;
+            exchangeRateCell.innerHTML = exchangeRates[currency];
+          }
+        })
+        .catch(function(error) {
+          console.log("Error fetching exchange rates data: ", error);
+        });
+    }
+
+    // Call the fetchExchangeRates() function when the page loads
+    window.onload = function() {
+      console.log("Page loaded, fetching exchange rates data...");
+      fetchExchangeRates();
+    };
+  </script>
+</body>
+</html>

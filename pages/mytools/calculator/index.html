@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.0/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.2.1/decimal.min.js"></script>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    table {
+      margin: 0 auto;
+    }
+    td {
+      padding: 5px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    input[type="button"] {
+      width: 50px;
+      height: 50px;
+      font-size: 1.5em;
+      margin: 5px;
+    }
+    input[type="button"]:hover {
+      background-color: #ddd;
+    }
+    </style>
+</head>
+<body>
+    <h2 class="title">Calculator</h2>
+    <table>
+        <tr>
+            <td colspan="4">
+            <input type="text" id="result" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="addToResult('1')"></td>
+            <td><input type="button" value="2" onclick="addToResult('2')"></td>
+            <td><input type="button" value="3" onclick="addToResult('3')"></td>
+            <td><input type="button" value="+" onclick="addToResult('+')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="addToResult('4')"></td>
+            <td><input type="button" value="5" onclick="addToResult('5')"></td>
+            <td><input type="button" value="6" onclick="addToResult('6')"></td>
+            <td><input type="button" value="-" onclick="addToResult('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="addToResult('7')"></td>
+            <td><input type="button" value="8" onclick="addToResult('8')"></td>
+            <td><input type="button" value="9" onclick="addToResult('9')"></td>
+            <td><input type="button" value="*" onclick="addToResult('*')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="." onclick="addToResult('.')"></td>
+            <td><input type="button" value="0" onclick="addToResult('0')"></td>
+            <td><input type="button" value="C" onclick="clearResult()"></td>
+            <td><input type="button" value="DEL" onclick="deleteLastChar()"></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+            <input type="button" value="/" onclick="addToResult('/')">
+            <input type="button" value="=" onclick="calculateResult()">
+            </td>
+        </tr>
+    </table>
+    
+    <script>
+        function addToResult(value) {
+            const resultField = document.getElementById('result');
+            const currentValue = resultField.value;
+            if (value === '-' && currentValue === '') {
+                resultField.value = '-';
+            } else if (value === '-' && currentValue === '-') {
+                // do nothing
+            } else {
+                resultField.value += value.toString();
+            }
+        }
+        function clearResult() {
+            document.getElementById('result').value = '';
+        }
+        function deleteLastChar() {
+            const resultField = document.getElementById('result');
+            const currentValue = resultField.value;
+            resultField.value = currentValue.slice(0, -1);
+        }
+        function calculateResult() {
+            const expr = document.getElementById('result').value;
+            const result = math.evaluate(expr);
+            const decimalResult = new Decimal(result);
+            document.getElementById('result').value = decimalResult.toString();
+        }
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+            if (/\d/.test(key)) {
+                addToResult(key);
+            } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+                addToResult(key);
+            } else if (key === '.' || key === ',') {
+                addToResult('.');
+            } else if (key === 'Enter') {
+calculateResult();
+            } else if (key === 'Backspace') {
+                deleteLastChar();
+            }
+        });
+    </script>
+</body>
+</html>

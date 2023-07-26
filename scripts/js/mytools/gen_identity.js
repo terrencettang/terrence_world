@@ -1,7 +1,8 @@
-let names = [];
-let allSurnames = [];
-let Surnames = [];
+var names = [];
+var allSurnames = [];
+var Surnames = [];
 var selectedSurname = '';
+console.log("1");
 
 async function loadNames() {
     //Load names data here...
@@ -67,11 +68,6 @@ function getRandomName(sex, algorithm) {
         randomIndex = Math.floor(Math.random() * filteredNames.length);
         selectedname = filteredNames[randomIndex].Name;
     } else if (algorithm === 'higher-count') {
-        // filteredNames.sort((a, b) => b.Frequency - a.Frequency);
-        // const maxFrequency = filteredNames[0].Frequency;
-        // const lowerFrequencyNames = filteredNames.filter(name => name.Frequency < maxFrequency);
-        // filteredNames = lowerFrequencyNames.length > 0 ? lowerFrequencyNames : filteredNames;
-        // randomIndex = Math.floor(Math.random() * filteredNames.length);
         // Sort in descending order
         filteredNames.sort((a, b) => b.Count - a.Count);
 
@@ -81,11 +77,7 @@ function getRandomName(sex, algorithm) {
         // Select a surname with a probability proportional to its frequency
         selectedname = weightedRandom(names, frequencies);
     } else if (algorithm === 'lower-count') {
-        // filteredNames.sort((a, b) => a.Frequency - b.Frequency);
-        // const minFrequency = filteredNames[0].Frequency;
-        // const higherFrequencyNames = filteredNames.filter(name => name.Frequency > minFrequency);
-        // filteredNames = higherFrequencyNames.length > 0 ? higherFrequencyNames : filteredNames;
-        // randomIndex = Math.floor(Math.random() * filteredNames.length);
+        // Sort in acscending order
         filteredNames.sort((a, b) => a.Count - b.Count);
 
         // Reverse the frequencies so that lower counts have higher "weights"
@@ -113,7 +105,6 @@ function populateCountrySelect() {
             countrySelect.appendChild(option);
         });
         countrySelect.value = "China";
-        'Random'
     }
 }
 function weightedRandom(arr, weight_t) {
@@ -167,7 +158,6 @@ function getRandomSurname(algorithm, countrySelect) {
     } else if (algorithm === 'higher-count') {
         // Sort in descending order
         allSurnames.sort((a, b) => b.Frequency - a.Frequency);
-        console.log();
         // Get the array of surnames and their frequencies
         let surnames = allSurnames.map(allSurnames => allSurnames.Name);
         let frequencies = allSurnames.map(allSurnames => allSurnames.Frequency);
@@ -175,7 +165,6 @@ function getRandomSurname(algorithm, countrySelect) {
         console.log(frequencies);
         // Select a surname with a probability proportional to its frequency
         selectedSurname = weightedRandom(surnames, frequencies);
-        console.log(selectedSurname);
     } else if (algorithm === 'lower-count') {
         // Sort in ascending order
         allSurnames.sort((a, b) => a.Frequency - b.Frequency);

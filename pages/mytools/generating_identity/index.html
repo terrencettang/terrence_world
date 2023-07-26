@@ -65,15 +65,19 @@
         </form>
       </div>
     <script>
-        var containers_ = document.querySelector(".title");
+        var containers_ = document.querySelector(".name_form");
         var containers_id = containers_.getAttribute('id');
-        if (containers_id === null){
+        if (containers_id === null | containers_id === ""){
             containers_.setAttribute("id", "added");
             var script = document.createElement('script');
             script.src = location.origin + '/terrence_world/scripts/js/mytools/gen_identity.js';
             document.getElementById('main').appendChild(script);
+            containers_.setAttribute("id", "");
         }
     </script>
 </div>
 </main>
+
 <script src = "../../../scripts/js/redirect_main.js"></script>
+
+

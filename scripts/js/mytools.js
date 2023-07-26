@@ -14,9 +14,12 @@ function generateToolTypesHtml(tools) {
 }
 
 function updateCurrent(type) {
+    // Remove the "current" class from all tool type links
     $("#tool-types a").removeClass("current");
+
+    // Add the "current" class to the clicked tool type link
     $(`#tool-types a[href='#${type}']`).addClass("current");
-  }
+}
 
 function updateSelectedToolsTable(tools) {
     // Get the selected tool type

@@ -51,7 +51,6 @@ th, td {
 th {
    text-align: center;
 }
-   
 td {
    text-align: left;
 }
@@ -208,3 +207,7 @@ label {
    width: 100%;
    resize: none;
 }
+#tool-types a.current {
+   background-color: var(--color-orange);
+   color: var(--color-white);
+ }
