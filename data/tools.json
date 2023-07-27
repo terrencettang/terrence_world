@@ -30,6 +30,12 @@
       "type": "Text"
    },
    {
+      "name": "Random English Word",
+      "description": "Generating a random English Word",
+      "url": "pages/mytools/random_english_word/index.html",
+      "type": "Text"
+   },
+   {
       "name": "Country Code",
       "description": "Country Code Lookup Table",
       "url": "pages/mytools/country_code/index.html",

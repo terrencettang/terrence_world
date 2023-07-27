@@ -142,8 +142,7 @@ function getRandomSurname(algorithm, countrySelect) {
     } else if (algorithm === 'lower-count') {
         // Sort in ascending order
         Surnames.sort((a, b) => a.Frequency - b.Frequency);
-        // Reverse the frequencies so that lower counts have higher "weights"
-        let maxFrequency = Surnames[Surnames.length - 1].Frequency;
+        // Change the weighting as recipical
         let surnames = Surnames.map(Surnames => Surnames.Name);
         let frequencies = Surnames.map(Surnames => maxFrequency - Surnames.Frequency + 1);
 

@@ -112,6 +112,14 @@ label {
    justify-content: center;
    align-items: center;
 }
+.containers_center {
+   margin-top: 20px;
+   margin: 0 auto;
+   text-align: center;
+   width: 100%;
+   justify-content: center;
+   align-items: center;
+}
 .photo_canvas_containers {
    margin: 0 auto;
    display: flex;
@@ -211,3 +219,31 @@ label {
    background-color: var(--color-orange);
    color: var(--color-white);
  }
+#reference {
+   margin-top: 60px;
+   margin-left: 60px;
+   text-align: left;
+   font-size: 10px;
+}
+#rand-word {
+   text-align: center;
+   font-weight: bold;
+   color : var(--color-red);
+   font-size: 40px;
+ }
+#trans_word {
+   text-align: center;
+   font-weight: bold;
+   color : var(--color-light-blue);
+   font-size: 30px;
+ }
+#word_rank {
+   font-weight: bold;
+   text-align: center;
+   color : var(--color-text-link);
+   font-size: 16px;
+}
+#generate_word {
+   margin-left: auto;
+   margin-right: auto;
+}
