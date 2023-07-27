@@ -87,7 +87,7 @@
 		loadNames();
 		// Function to generate a random word from the dataset
 		function generateWord() {
-			document.getElementById("trans_word").innerHTML = "Loading....."
+			document.getElementById("trans_word").innerHTML = ""
 			const minRank = parseInt(document.getElementById("min-rank").value);
         	const maxRank = parseInt(document.getElementById("max-rank").value);
 			// Filter the English words by rank
