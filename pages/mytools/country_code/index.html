@@ -36,18 +36,18 @@
                     flagCell.style.verticalAlign = 'middle';
                     flagCell.style.padding = '0'; 
                     const flagImg = document.createElement('img');
-                    flagImg.setAttribute('src', `https://flagsapi.com/${object['Alpha-2 code']}/flat/32.png`);
+                    flagImg.setAttribute('src', `https://flagsapi.com/${object['Alpha-2']}/flat/32.png`);
                     flagImg.style.padding = '0'; 
                     flagCell.appendChild(flagImg);
                     row.appendChild(flagCell);
 
                     // Create cells for the country code data
                     const nameCell = document.createElement('td');
-                    nameCell.textContent = object['English short name lower case'];
+                    nameCell.textContent = object['Name'];
                     const alpha2Cell = document.createElement('td');
-                    alpha2Cell.textContent = object['Alpha-2 code'];
+                    alpha2Cell.textContent = object['Alpha-2'];
                     const alpha3Cell = document.createElement('td');
-                    alpha3Cell.textContent = object['Alpha-3 code'];
+                    alpha3Cell.textContent = object['Alpha-3'];
                     row.appendChild(nameCell);
                     row.appendChild(alpha2Cell);
                     row.appendChild(alpha3Cell);
