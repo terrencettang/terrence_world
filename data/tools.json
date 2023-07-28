@@ -36,6 +36,12 @@
       "type": "Text"
    },
    {
+      "name": "Random Chinese Word",
+      "description": "Generating a random Chinese Word",
+      "url": "pages/mytools/random_chinese_word/index.html",
+      "type": "Text"
+   },
+   {
       "name": "Country Code",
       "description": "Country Code Lookup Table",
       "url": "pages/mytools/country_code/index.html",
