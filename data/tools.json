@@ -30,6 +30,12 @@
       "type": "Text"
    },
    {
+      "name": "Random Number",
+      "description": "Generating a random number",
+      "url": "pages/mytools/random_number/index.html",
+      "type": "Text"
+   },
+   {
       "name": "Random English Word",
       "description": "Generating a random English Word",
       "url": "pages/mytools/random_english_word/index.html",
@@ -48,15 +54,15 @@
       "type": "Others"
    },   
    {
-      "name": "HTML Image Downloader",
-      "description": "Download all images in the HTML code",
-      "url": "pages/mytools/web_img_downloader/index.html",
-      "type": "Web"
-   },
-   {
       "name": "Stop Watch",
       "description": "Stop Watch",
       "url": "pages/mytools/stopwatch/index.html",
+      "type": "Others"
+   },
+   {
+      "name": "Alarm Clock",
+      "description": "Alarm Clock",
+      "url": "pages/mytools/alarm/index.html",
       "type": "Others"
    }
 ]

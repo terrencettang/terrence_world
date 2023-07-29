@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Resizer</title>
+	<meta charset="utf-8">
+	<style>
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+		canvas {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<h1>Image Resizer</h1>
+	<p>
+		<label for="fileinput">Select an image file to resize:</label>
+		<input type="file" id="fileinput">
+	</p>
+	<p>
+		<label for="widthinput">Enter the desired width:</label>
+		<input type="number" id="widthinput" value="500">
+	</p>
+	<p>
+		<label for="heightinput">Enter the desired height:</label>
+		<input type="number" id="heightinput" value="500">
+	</p>
+	<p>
+		<button id="resizebutton">Resize Image</button>
+	</p>
+	<div id="output"></div>
+
+	<script>
+		var fileInput = document.getElementById("fileinput");
+		var widthInput = document.getElementById("widthinput");
+		var heightInput = document.getElementById("heightinput");
+		var resizeButton = document.getElementById("resizebutton");
+		var output = document.getElementById("output");
+
+		resizeButton.addEventListener("click", function() {
+			var file = fileInput.files[0];
+			var width = parseInt(widthInput.value);
+			var height = parseInt(heightInput.value);
+
+			if (file && width && height) {
+				var reader = new FileReader();
+				reader.onload = function() {
+					var img = new Image();
+					img.onload = function() {
+						var canvas = document.createElement("canvas");
+						canvas.width = width;
+						canvas.height = height;
+						var ctx = canvas.getContext("2d");
+						ctx.drawImage(img, 0, 0, width, height);
+						var resizedDataUrl = canvas.toDataURL("image/jpeg");
+						var resizedImg = new Image();
+						resizedImg.src = resizedDataUrl;
+						output.appendChild(resizedImg);
+					};
+					img.src = reader.result;
+				};
+				reader.readAsDataURL(file);
+			} else {
+				alert("Please select a file and enter width and height values.");
+			}
+		});
+	</script>
+</body>
+</html>

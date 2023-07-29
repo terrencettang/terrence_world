@@ -1,0 +1,33 @@
+<main id = "main">
+    <div id ="content">
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Text</a></li>
+            </ul>
+        </nav>
+        <h2 class="title">Alarm Clock</h2>
+        <div class="containers">
+            <div class="center">
+                <input class = "center" type="time" id="alarmtime" required><br>
+            </div>
+            <div class="center">
+                <button class = "btn center" id="setbutton">Set Alarm</button>
+            </div>
+            <div id="message" class="center"></div>
+        </div>
+        <script>
+            //main js
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/mytools/alarm.js';
+            document.getElementById('main').appendChild(script);
+            //common js
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+            document.getElementById('main').appendChild(script);
+            script.onload = function() {
+                check_currentclass("mytools");
+            }
+        </script>
+    </div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>

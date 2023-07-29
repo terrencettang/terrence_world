@@ -74,6 +74,13 @@
             document.getElementById('main').appendChild(script);
             containers_.setAttribute("id", "");
         }
+        //check class
+        var script = document.createElement('script');
+        script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+        document.getElementById('main').appendChild(script);
+        script.onload = function() {
+            check_currentclass("mytools");
+        }
     </script>
 </div>
 </main>

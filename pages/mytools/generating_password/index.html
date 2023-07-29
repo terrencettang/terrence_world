@@ -1,6 +1,6 @@
 <main id = "main">
-  <div id ="content">
-  <nav id = "nav_sub">
+    <div id ="content">
+      <nav id = "nav_sub">
     <ul>
       <li><a href="#" id ="current">Text</a></li>
     </ul>
@@ -43,59 +43,23 @@
         <button type="button" class="btn center" id="generate" onclick="generatePassword()">Generate Password</button>
       </div>
       <div class="center">
-        <input class="center" type="text" id="password" readonly>
+        <input class="center" type="text" id="textoutput" readonly>
       </div>
       <div class="center">
         <button type="button" class="btn center" id="copy" onclick="copyPassword()">Copy to Clipboard</button>
       </div>
   </div>
     <script>
-       var lengthInput = document.getElementById('length');
-      lengthInput.addEventListener('keyup', function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          generatePassword();
-        }
-      });
-      function generatePassword() {
-        const length = parseInt(document.getElementById('length').value);
-        if (length < 8 || length > 128) {
-            alert('Password length must be between 8 and 128.');
-            return;
-        }
-        var uppercase = document.getElementById('uppercase').checked;
-        var lowercase = document.getElementById('lowercase').checked;
-        var numbers = document.getElementById('numbers').checked;
-        var symbols = document.getElementById('symbols').checked;
-         excludeSimilar = document.getElementById('exclude-similar').checked;
-        var excludeAmbiguous = document.getElementById('exclude-ambiguous').checked;
-        var uppercaseChars = 'ABCDEFGHJKLMNPQRSTUVWXYZ'; // Excludes I, L, O
-        var lowercaseChars = 'abcdefghijkmnopqrstuvwxyz'; // Excludes l
-        var numberChars = '23456789'; // Excludes 0, 1
-        var symbolChars = '@#$%';
-        var ambiguousChars = '{}[]()/\\\'"`~,;:.<>';
-        let chars = '';
-        if (uppercase) chars += uppercaseChars;
-        if (lowercase) chars += lowercaseChars;
-        if (numbers) chars += numberChars;
-        if (symbols) chars += symbolChars;
-        if (excludeSimilar) {
-          chars = chars.replace(/[iIlLoO10]/g, ''); // Remove similar characters
-        }
-        if (excludeAmbiguous) {
-          chars = chars.replace(new RegExp('[' + ambiguousChars.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ']', 'g'), ''); // Remove ambiguous characters
-        }
-        let password = '';
-        for (let i = 0; i < length; i++) {
-          password += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        document.getElementById('password').value = password;
-      }
-      function copyPassword() {
-        var password = document.getElementById('password');
-        password.select();
-        document.execCommand('copy');
-        M.toast({html: 'Password copied to clipboard!'});
+      //main js
+      var script = document.createElement('script');
+      script.src = location.origin + '/terrence_world/scripts/js/mytools/generate_password.js';
+      document.getElementById('main').appendChild(script);
+      //common js
+      var script = document.createElement('script');
+      script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+      document.getElementById('main').appendChild(script);
+      script.onload = function() {
+        check_currentclass("mytools");
       }
     </script>
   </div>
