@@ -46,6 +46,12 @@
       "description": "Country Code Lookup Table",
       "url": "pages/mytools/country_code/index.html",
       "type": "Others"
+   },   
+   {
+      "name": "HTML Image Downloader",
+      "description": "Download all images in the HTML code",
+      "url": "pages/mytools/web_img_downloader/index.html",
+      "type": "Web"
    },
    {
       "name": "Stop Watch",

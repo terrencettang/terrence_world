@@ -1,0 +1,20 @@
+[   
+    {
+        "name": "Random English Word",
+        "description": "Generating a random English Word",
+        "url": "pages/mytools/random_english_word/index.html",
+        "type": "Language"
+    },
+    {
+        "name": "Random Chinese Word",
+        "description": "Generating a random Chinese Word",
+        "url": "pages/mytools/random_chinese_word/index.html",
+        "type": "Language"
+    },
+    {
+        "name": "Top 10000 English Words",
+        "description": "Top 10000 English Words",
+        "url": "pages/learn/language/english_words.html",
+        "type": "Language"
+    }
+]

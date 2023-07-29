@@ -52,24 +52,41 @@
 			</p>
 		</div>
 	<script>
-		var chinese_words = []
+		var chinese_words = [];
 		async function load_chi_words() {
-			//Load english words here...
-			const response = await fetch(location.origin + '/terrence_world/data/csv/mandarin_words.csv');
-			const text = await response.text();
-			const lines = text.split('\n');
-			const headers = lines[0].split(',');
-			headers[headers.length - 1] = headers[headers.length - 1].trim();
-			for (let i = 1; i < lines.length; i++) {
-				const values = lines[i].split(',');
-				values[values.length - 1] = values[values.length - 1].trim();
-				const obj = {};
-				for (let j = 0; j < headers.length; j++) {
-					obj[headers[j]] = values[j];
-				}
-				chinese_words.push(obj);
-			}
-		}
+            // Load Chinese words here...
+            const response = await fetch(location.origin + '/terrence_world/data/csv/mandarin_words.csv');
+            const text = await response.text();
+            const lines = text.split('\n');
+            const headers = lines[0].split(',');
+            headers[headers.length - 1] = headers[headers.length - 1].trim();
+            
+            for (let i = 1; i < lines.length; i++) {
+                const values = [];
+                let currentVal = '';
+                let insideQuotes = false;
+                for (let j = 0; j < lines[i].length; j++) {
+                    const char = lines[i][j];
+                    if (char === '"' && !insideQuotes) {
+                        insideQuotes = true;
+                    } else if (char === '"' && insideQuotes) {
+                        insideQuotes = false;
+                    } else if (char === ',' && !insideQuotes) {
+                        values.push(currentVal.trim());
+                        currentVal = '';
+                    } else {
+                        currentVal += char;
+                    }
+                }
+                values.push(currentVal.trim());
+                
+                const obj = {};
+                for (let j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = values[j];
+                }
+                chinese_words.push(obj);
+            }
+        }
 		function weightedRandom(arr, weight_t) {
 			const weight = weight_t.map(Number);
 			let totalWeight = weight.reduce((prev, curr) => prev + curr, 0);
@@ -85,7 +102,9 @@
 				}
 			}
 		}
-		load_chi_words();
+        if (chinese_words.length === 0) {
+            load_chi_words();
+        }
 		// Function to generate a random word from the dataset
 		function generateWord() {
 			document.getElementById("trans_word").innerHTML = "Translate Loading....."

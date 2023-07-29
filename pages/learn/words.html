@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Top 10,000 English Words</title>
+    <style>
+        .page {
+            display: none;
+        }
+    </style>
+    <script>
+        function showPage(page) {
+            // Hide all pages
+            var pages = document.getElementsByClassName("page");
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].style.display = "none";
+            }
+            
+            // Show the selected page
+            document.getElementById("page" + page).style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <h1>Top 10,000 English Words</h1>
+    <div id="navigation">
+        <!-- Generate navigation buttons dynamically -->
+    </div>
+    <div id="pages">
+        <!-- Generate tables dynamically -->
+    </div>
+
+    <script>
+        // Load the top 10,000 English words data
+        var englishWords = [
+            "it"
+            // Insert the top 10,000 English words here
+        ];
+
+        // Calculate the number of pages
+        var numPages = Math.ceil(englishWords.length / 100);
+
+        // Generate navigation buttons dynamically
+        var navigation = document.getElementById("navigation");
+        for (var i = 1; i <= numPages; i++) {
+            var button = document.createElement("button");
+            button.textContent = "Page " + i;
+            button.onclick = (function(page) {
+                return function() {
+                    showPage(page);
+                };
+            })(i);
+            navigation.appendChild(button);
+        }
+
+        // Generate tables dynamically
+        var pagesContainer = document.getElementById("pages");
+        for (var i = 0; i < numPages; i++) {
+            var page = document.createElement("div");
+            page.id = "page" + (i + 1);
+            page.className = "page";
+
+            var table = document.createElement("table");
+            var startIndex = i * 100;
+            var endIndex = Math.min(startIndex + 100, englishWords.length);
+            for (var j = startIndex; j < endIndex; j++) {
+                var word = englishWords[j];
+                var row = document.createElement("tr");
+                var cell = document.createElement("td");
+                cell.textContent = word;
+                row.appendChild(cell);
+                table.appendChild(row);
+            }
+
+            page.appendChild(table);
+            pagesContainer.appendChild(page);
+        }
+
+        // Show the first page by default
+        showPage(1);
+    </script>
+</body>
+</html>

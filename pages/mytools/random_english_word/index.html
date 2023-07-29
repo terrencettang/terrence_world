@@ -146,6 +146,23 @@
 				}
     		}
 		}
+		function check_class() {
+			const links = document.querySelectorAll("nav ul li a");
+
+			// Remove IDs from links with the class "mytools"
+			links.forEach(link => {
+			if (links.mytools.id === null) {
+				link.removeAttribute("id");
+			}
+			});
+
+			// Set ID for the link with the class "mytools"
+			const myToolsLink = document.querySelector("nav ul li a.mytools");
+			if (myToolsLink && !myToolsLink.id) {
+			myToolsLink.id = "current";
+			}
+		}
+		check_class();
 	</script>
 </div>
 </main>

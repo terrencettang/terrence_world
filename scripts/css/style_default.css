@@ -215,7 +215,8 @@ label {
    width: 100%;
    resize: none;
 }
-#tool-types a.current {
+#tool-types a.current,
+#learn-types a.current {
    background-color: var(--color-orange);
    color: var(--color-white);
  }

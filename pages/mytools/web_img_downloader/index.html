@@ -1,0 +1,67 @@
+<main id="main">
+    <div id="content">
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Text</a></li>
+            </ul>
+        </nav>
+        <h2 class="title">Random English Word1</h2>
+		<div class="containers">
+            <label for="url-input">Enter URL:</label>
+            <input id="url-input" type="text">
+            <button onclick="downloadImages()">Download Images</button>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+        <script>
+            function downloadImages() {
+            // Get the URL of the webpage from the input field
+            const url = document.getElementById('url-input').value;
+
+            // Set the origin domain that is making the request
+            const origin = 'https://www.terrencetang.com';
+
+            // Fetch the HTML content of the webpage
+            fetch(url, {
+            headers: {
+                'Origin': origin
+            }
+            credentials: 'include'
+            })
+                .then(response => response.text())
+                .then(html => {
+                // Create a DOM parser to parse the HTML content
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                // Get all the image URLs from the webpage
+                const imageUrls = Array.from(doc.querySelectorAll('img')).map(img => img.src);
+
+                // Create a JSZip instance to create the zip file
+                const zip = new JSZip();
+
+                // Download each image and add it to the zip file
+                const downloadPromises = imageUrls.map(url => {
+                    return fetch(url)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        const fileName = url.split('/').pop();
+                        zip.file(fileName, blob);
+                    });
+                });
+
+                // When all images are downloaded, create the zip file and offer it for download
+                Promise.all(downloadPromises).then(() => {
+                    zip.generateAsync({ type: 'blob' }).then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'images.zip';
+                    link.click();
+                    });
+                });
+                });
+            }
+        </script>
+    </div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>
