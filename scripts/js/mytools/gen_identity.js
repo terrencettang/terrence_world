@@ -160,8 +160,6 @@ function getRandomSurname(algorithm, countrySelect) {
         // Get the array of surnames and their frequencies
         let surnames = allSurnames.map(allSurnames => allSurnames.Name);
         let frequencies = allSurnames.map(allSurnames => allSurnames.Frequency);
-        console.log(surnames);
-        console.log(frequencies);
         // Select a surname with a probability proportional to its frequency
         selectedSurname = weightedRandom(surnames, frequencies);
     } else if (algorithm === 'lower-count') {

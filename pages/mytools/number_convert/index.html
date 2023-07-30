@@ -1,0 +1,78 @@
+<main id = "main">
+    <div id ="content">
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Number</a></li>
+            </ul>
+        </nav>
+    <h2 class="title">Number Converter</h2>
+    <table class = 'noborder width40'>
+		<tr>
+			<td><label for="inputvalue">Input Value:</label></td>
+			<td><input type="text" id="inputvalue"></td>
+		</tr>
+		<tr>
+			<td><label for="inputbase">Input Base:</label></td>
+			<td><select id="inputbase">
+					<option value="2">Binary</option>
+					<option value="8">Octal</option>
+					<option value="10" selected>Decimal</option>
+					<option value="16">Hexadecimal</option>
+				</select></td>
+		</tr>
+		<tr>
+			<td><label for="outputbase">Output Base:</label></td>
+			<td><select id="outputbase">
+					<option value="2" selected>Binary</option>
+					<option value="8">Octal</option>
+					<option value="10">Decimal</option>
+					<option value="16">Hexadecimal</option>
+				</select></td>
+		</tr>
+	</table>
+    <div class="containers">
+        <div class="center">
+            <button class = "btn center" id="convertbutton">Convert</button>
+        </div>
+        <div class="center">
+            <input class="center" type="text" id="textoutput" readonly>
+        </div>
+        <div class="center">
+            <button type="button" class="btn center" id="copy" onclick="copyNumber()">Copy to Clipboard</button>
+        </div>
+    </div>
+	<script>
+		var convertButton = document.getElementById("convertbutton");
+		var inputValueInput = document.getElementById("inputvalue");
+		var inputBaseSelect = document.getElementById("inputbase");
+		var outputBaseSelect = document.getElementById("outputbase");
+		var resultDiv = document.getElementById("result");
+
+		convertButton.addEventListener("click", function() {
+			var inputValue = inputValueInput.value.toUpperCase();
+			var inputBase = Number(inputBaseSelect.value);
+			var outputBase = Number(outputBaseSelect.value);
+			var decimalValue = parseInt(inputValue, inputBase);
+			if (!isNaN(decimalValue)) {
+				var outputValue = decimalValue.toString(outputBase);
+				document.getElementById('textoutput').value = outputValue;
+			} else {
+				alert("Please enter a valid number in the selected input base.");
+			}
+		});
+        function copyNumber() {
+            var number = document.getElementById('textoutput');
+            number.select();
+            document.execCommand('copy');
+        }
+        //common js
+        var script = document.createElement('script');
+        script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+        document.getElementById('main').appendChild(script);
+        script.onload = function() {
+            check_currentclass("mytools");
+        }
+	</script>
+</div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>

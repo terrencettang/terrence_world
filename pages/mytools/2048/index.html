@@ -1,0 +1,43 @@
+<main id = "main">
+    <div id ="content">
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Game</a></li>
+            </ul>
+        </nav>
+        <h2 class="title">2048</h2>
+        <div class="containers">
+            <div class = "center">
+                <p id="score">Score: 0</p>
+            </div>
+            <div id="gameboard"></div>
+            <div class = "center">
+                <button class = "btn center" id="new-game">Start New Game</button>
+            </div>
+        </div>
+        <div id="reference">
+            <p>Reference: <br>
+            2048 was created by Gabriele Cirulli - https://github.com/gabrielecirulli/2048
+            </p>
+        </div>
+        <script>
+            //main js
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/mytools/2048.js';
+            document.getElementById('main').appendChild(script);
+            //common js
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+            document.getElementById('main').appendChild(script);
+            script.onload = function() {
+                check_currentclass("mytools");
+            }
+            //main css
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = location.origin + '/terrence_world/scripts/css/mytools/2048.css';
+            document.getElementById('main').appendChild(link);        
+        </script>
+    </div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>

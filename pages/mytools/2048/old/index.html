@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2048 Game</title>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+        #gameboard {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        .tile {
+            width: 90px;
+            height: 90px;
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 90px;
+            position: absolute;
+            border-radius: 5px;
+        }
+        .tile-2 {
+            background-color: #eee4da;
+            color: #776e65;
+        }
+        .tile-4 {
+            background-color: #ede0c8;
+            color: #776e65;
+        }
+        .tile-8 {
+            background-color: #f2b179;
+            color: #fff;
+        }
+        .tile-16 {
+            background-color: #f59563;
+            color: #fff;
+        }
+        .tile-32 {
+            background-color: #f67c5f;
+            color: #fff;
+        }
+        .tile-64 {
+            background-color: #f65e3b;
+            color: #fff;
+        }
+        .tile-128 {
+            background-color: #edcf72;
+            color: #fff;
+        }
+        .tile-256 {
+            background-color: #edcc61;
+            color: #fff;
+        }
+        .tile-512 {
+            background-color: #edc850;
+            color: #fff;
+        }
+        .tile-1024 {
+            background-color: #edc53f;
+            color: #fff;
+        }
+        .tile-2048 {
+            background-color: #edc22e;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>2048 Game</h1>
+    <div id="gameboard"></div>
+    <p id="score">Score: 0</p>
+
+
+    <script>
+        var gameBoard = document.getElementById("gameboard");
+        var cells = [];
+        var score = 0;
+
+        initializeGame();
+
+        function initializeGame() {
+            // Create the cells
+            for (var i = 0; i < 4; i++) {
+                cells[i] = [];
+                for (var j = 0; j < 4; j++) {
+                    var cell = document.createElement("div");
+                    cell.className = "tile tile-2";
+                    cell.style.top = (i * 100) + "px";
+                    cell.style.left = (j * 100) + "px";
+                    gameBoard.appendChild(cell);
+                    cells[i][j] = {
+                        value: 2,
+                        element: cell
+                    };
+                }
+            }
+            // Add two random tiles
+            addRandomTile();
+            addRandomTile();
+            // Update the score
+            updateScore();
+        }
+
+        function addRandomTile() {
+            var emptyCells = [];
+            for (var i = 0; i < 4; i++) {
+                for (var j = 0; j < 4; j++) {
+                    if (cells[i][j].value === 0) {
+                        emptyCells.push({ x: i, y: j });
+                    }
+                }
+            }
+            if (emptyCells.length > 0) {
+                var randomIndex = Math.floor(Math.random() * emptyCells.length);
+                var randomCell = emptyCells[randomIndex];
+                var newValue = Math.random() < 0.9 ? 2 : 4;
+                cells[randomCell.x][randomCell.y].value = newValue;
+                cells[randomCell.x][randomCell.y].element.className = "tile tile-" + newValue;
+            }
+        }
+
+        function updateScore() {
+            const scoreElement = document.getElementById("score");
+            scoreElement.textContent = "Score: " + score;
+        }
+
+        function moveTiles(direction) {
+            var hasMoved = false;
+            var deltaX = 0;
+            var deltaY = 0;
+            switch (direction) {
+                case "up":
+                    deltaY = -1;
+                    break;
+                case "down":
+                    deltaY = 1;
+                    break;
+                case "left":
+                    deltaX = -1;
+                    break;
+                case "right":
+                    deltaX = 1;
+                    break;
+            }
+            for (var i = 0; i < 4; i++) {
+                for (var j= 0; j < 4; j++) {
+                    var currentCell = cells[i][j];
+                    if (currentCell.value !== 0) {
+                        var nextX = i + deltaX;
+                        var nextY = j + deltaY;
+                        while (nextX >= 0 && nextX < 4 && nextY >= 0 && nextY < 4) {
+                            var nextCell = cells[nextX][nextY];
+                            if (nextCell.value === 0) {
+                                // Move the current tile to the next cell
+                                nextCell.value = currentCell.value;
+                                nextCell.element.className = currentCell.element.className;
+                                currentCell.value = 0;
+                                currentCell.element.className = "tile tile-0";
+                                currentCell = nextCell;
+                                hasMoved = true;
+                            } else if (nextCell.value === currentCell.value) {
+                                // Merge the current tile with the next cell
+                                nextCell.value *= 2;
+                                nextCell.element.className = "tile tile-" + nextCell.value;
+                                currentCell.value = 0;
+                                currentCell.element.className = "tile tile-0";
+                                score += nextCell.value;
+                                updateScore();
+                                hasMoved = true;
+                                break;
+                            } else {
+                                // Stop moving
+                                break;
+                            }
+                            nextX += deltaX;
+                            nextY += deltaY;
+                        }
+                    }
+                }
+            }
+            if (hasMoved) {
+                addRandomTile();
+            }
+        }
+
+        document.addEventListener("keydown", function(event) {
+            switch (event.keyCode) {
+                case 37: // Left arrow
+                    moveTiles("left");
+                    break;
+                case 38: // Up arrow
+                    moveTiles("up");
+                    break;
+                case 39: // Right arrow
+                    moveTiles("right");
+                    break;
+                case 40: // Down arrow
+                    moveTiles("down");
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>

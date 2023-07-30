@@ -12,6 +12,12 @@
       "type": "Text"
    },
    {
+      "name": "Number Convertor",
+      "description": "Convert numbers between different numerical systems",
+      "url": "pages/mytools/number_convert/index.html",
+      "type": "Number"
+   },
+   {
       "name": "Photo Add Text",
       "description": "Adding Text into the center of the photo",
       "url": "pages/mytools/photo_add_text/index.html",
@@ -33,7 +39,13 @@
       "name": "Random Number",
       "description": "Generating a random number",
       "url": "pages/mytools/random_number/index.html",
-      "type": "Text"
+      "type": "Number"
+   },
+   {
+      "name": "2048 Game",
+      "description": "2048 Game",
+      "url": "pages/mytools/2048/index.html",
+      "type": "Game"
    },
    {
       "name": "Random English Word",
