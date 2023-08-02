@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mastermind Game</title>
+    <style>
+        /* Style for the game board */
+        .board {
+            display: flex;
+            flex-wrap: wrap;
+            width: 300px;
+            margin: 0 auto;
+        }
+        .cell {
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            border: 1px solid black;
+        }
+
+        /* Style for the color choices */
+        .colors {
+            display: flex;
+            justify-content: space-between;
+            width: 200px;
+            margin: 20px auto;
+        }
+        .color {
+            width: 30px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Style for the feedback indicators */
+        .feedback {
+            display: flex;
+            justify-content: space-between;
+            width: 200px;
+            margin: 5px auto;
+        }
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .black { background-color: black; }
+        .white { background-color: white; }
+    </style>
+</head>
+<body>
+    <h1>Mastermind Game</h1>
+    <div class="board"></div>
+    <div class="colors"></div>
+    <div class="feedback"></div>
+
+    <script>
+        // Define variables for the game
+        var colors = ["red", "green", "blue", "orange", "purple", "yellow"];
+        var code = generateCode();
+        var guesses = [];
+
+        // Create the game board
+        var board = document.querySelector(".board");
+        for (var i = 0; i < 10; i++) {
+            var row = document.createElement("div");
+            row.classList.add("row");
+            for (var j = 0; j < 4; j++) {
+                var cell = document.createElement("div");
+                cell.classList.add("cell");
+                cell.dataset.row = i;
+                cell.dataset.col = j;
+                row.appendChild(cell);
+            }
+            board.appendChild(row);
+        }
+
+        // Create the color choices
+        var colorsDiv = document.querySelector(".colors");
+        for (var i = 0; i < colors.length; i++) {
+            var color = document.createElement("div");
+            color.classList.add("color");
+            color.style.backgroundColor = colors[i];
+            color.dataset.color = colors[i];
+            color.addEventListener("click", chooseColor);
+            colorsDiv.appendChild(color);
+        }
+
+        // Define the function to generate a random code
+        function generateCode() {
+            var code = [];
+            for (var i = 0; i < 4; i++) {
+                var index = Math.floor(Math.random() * colors.length);
+                code.push(colors[index]);
+            }
+            return code;
+        }
+
+        // Define the function to choose a color
+        function chooseColor(event) {
+            var color = event.target.dataset.color;
+            var cells = document.querySelectorAll(".cell");
+            for (var i = 0; i < cells.length; i++) {
+                if (cells[i].classList.contains("active")) {
+                    cells[i].style.backgroundColor = color;
+                    cells[i].dataset.color = color;
+                    cells[i].classList.remove("active");
+                    break;
+                }
+            }
+        }
+
+        // Define the function to check the guess
+        function checkGuess() {
+            var guess = [];
+            var cells = document.querySelectorAll(".cell");
+            for (var i = 0; i < cells.length; i++) {
+                guess.push(cells[i].dataset.color);
+            }
+
+            // Check for correct colors and positions
+            var black = 0;
+            for (var i = 0; i < 4; i++) {
+                if (guess[i] === code[i]) {
+                    black++;
+                    guess[i] = null;
+                }
+            }
+
+            // Check for correct colors only
+            var white = 0;
+            for (var i = 0; i < 4; i++) {
+                if (guess[i] !== null && code.indexOf(guess[i]) !== -1) {
+                    white++;
+                    guess[i] = null;
+                }
+            }
+
+            // Add feedback indicators to the board
+            var feedback = document.querySelector(".feedback");
+            var row = document.createElement("div");
+            for (var i = 0; i < black; i++) {
+                var indicator = document.createElement("div");
+                indicator.classList.add("indicator", "black");
+                row.appendChild(indicator);
+            }
+            for (var i = 0; i < white; i++) {
+                var indicator = document.createElement("div");
+                indicator.classList.add("indicator", "white");
+                row.appendChild(indicator);
+            }
+            feedback.appendChild(row);
+
+            // Add the guess and feedback to the guesses array
+            guesses.push({
+                guess: guess,
+                feedback: [black, white]
+            });
+
+            // Check if the game is over
+            if (black === 4) {
+                endGame(true);
+            } else if (guesses.length === 10) {
+                endGame(false);
+            } else {
+                // Create a new row for the next guess
+                var board = document.querySelector(".board");
+                var cells = board.querySelectorAll(".cell");
+                for (var i = 0; i < cells.length; i++) {
+                    cells[i].style.backgroundColor = "";
+                    cells[i].dataset.color = "";
+                }
+                var row = document.createElement("div");
+                row.classList.add("row");
+                for (var i = 0; i < 4; i++) {
+                    var cell = document.createElement("div");
+                    cell.classList.add("cell", "active");
+                    cell.dataset.row = guesses.length;
+                    cell.dataset.col = i;
+                    row.appendChild(cell);
+                }
+                board.appendChild(row);
+            }
+        }
+
+        // Define the function to end the game
+        function endGame(win) {
+            var message = win ? "You win!" : "You lose!";
+            alert(message);
+
+            // Disable the color choices and game board
+            var colors = document.querySelectorAll(".color");
+            for (var i = 0; i < colors.length; i++) {
+                colors[i].removeEventListener("click", chooseColor);
+            }
+            var cells = document.querySelectorAll(".cell");
+            for (var i = 0; i < cells.length; i++) {
+                cells[i].classList.remove("active");
+            }
+
+            // Show the code
+            var codeDiv = document.createElement("div");
+            codeDiv.classList.add("code");
+            var codeLabel = document.createElement("span");
+            codeLabel.textContent = "Code: ";
+            codeDiv.appendChild(codeLabel);
+            for (var i = 0; i < 4; i++) {
+                var peg = document.createElement("div");
+                peg.classList.add("peg");
+                peg.style.backgroundColor = code[i];
+                codeDiv.appendChild(peg);
+            }
+            document.body.appendChild(codeDiv);
+        }
+
+        // Add event listener to the game board
+        var board = document.querySelector(".board");
+        board.addEventListener("click", function(event) {
+            var target = event.target;
+            if (target.classList.contains("cell") && target.classList.contains("active")) {
+                target.classList.remove("active");
+                var cells = board.querySelectorAll(".cell");
+                for (var i = 0; i < cells.length; i++) {
+                    if (cells[i].classList.contains("active")) {
+                        return;
+                    }
+                }
+                checkGuess();
+            }
+        });
+    </script>
+</body>
+</html>
