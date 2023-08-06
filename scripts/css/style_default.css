@@ -250,7 +250,7 @@ label {
    color : var(--color-light-blue);
    font-size: 30px;
  }
- #word_meaning {
+#word_meaning {
    text-align: center;
    font-weight: bold;
    color : var(--color-blue);
@@ -266,4 +266,25 @@ label {
    margin-left: auto;
    margin-right: auto;
 }
-
+#countdown {
+   margin-top: 10px;
+   margin-bottom: 20px;
+   text-align: center;
+   font-weight: bold;
+   color : var(--color-red);
+   font-size: 30px;
+ }
+#tetrisCanvas,
+#gameCanvas {
+   border: 1px solid #000;
+   display: block;
+   margin: 20px auto;
+}
+#score {
+   margin-top: 10px;
+   margin-bottom: 20px;
+   text-align: center;
+   font-weight: bold;
+   color : var(--color-red);
+   font-size: 30px;
+ }

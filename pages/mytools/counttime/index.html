@@ -1,0 +1,46 @@
+<main id = "main">
+    <div id ="content">
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Others</a></li>
+            </ul>
+        </nav>
+        <h2 class="title">Timer</h2>
+        <table class = 'noborder width40'>
+            <tr>
+              <td class="left noborder"><label for="hours">Hours:</label></td>
+              <td class="right noborder"><input type="number" id="hours" min="0" value="0"></td>
+            </tr>
+            <tr>
+              <td class="left noborder"><label for="minutes">Minutes:</label></td>
+              <td class="right noborder"><input type="number" id="minutes" min="0" value="0"></td>
+            </tr>
+            <tr>
+              <td class="left noborder"><label for="seconds">Seconds:</label></td>
+              <td class="right noborder"><input type="number" id="seconds" min="0" value="0"></td>
+            </tr>
+        </table>
+        <div class="containers">
+            <div class="center">
+                <p id="countdown"></p>
+            </div>
+            <div class="center">
+                <button id="setbutton" class="btn center">Start</button>
+            </div>
+        </div>
+        <script>
+        //main js
+        var script = document.createElement('script');
+        script.src = location.origin + '/terrence_world/scripts/js/mytools/counttime.js';
+        document.getElementById('main').appendChild(script);
+        //common js
+        var script = document.createElement('script');
+        script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+        document.getElementById('main').appendChild(script);
+        script.onload = function() {
+            check_currentclass("mytools");
+        }
+        </script>
+    </div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>

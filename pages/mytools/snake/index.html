@@ -1,0 +1,29 @@
+<main id = "main">
+    <div id ="content">
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Game</a></li>
+            </ul>
+        </nav>
+        <h2 class="title">Snake</h2>
+        <p class="center" id = "score">Score: 0</p>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div class="center">
+            <button type="button" class="btn center" id="startButton">Start Game</button>
+        </div>
+    <script>
+        //main js
+        var script = document.createElement('script');
+        script.src = location.origin + '/terrence_world/scripts/js/mytools/snake.js';
+        document.getElementById('main').appendChild(script);
+        //common js
+        var script = document.createElement('script');
+        script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+        document.getElementById('main').appendChild(script);
+        script.onload = function() {
+          check_currentclass("mytools");
+        }
+    </script>
+    </div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>

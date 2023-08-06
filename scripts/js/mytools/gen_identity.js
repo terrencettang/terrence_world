@@ -2,7 +2,6 @@ var names = [];
 var allSurnames = [];
 var Surnames = [];
 var selectedSurname = '';
-console.log("1");
 
 async function loadNames() {
     //Load names data here...

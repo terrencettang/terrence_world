@@ -72,9 +72,27 @@
       "type": "Others"
    },
    {
+      "name": "Tetris",
+      "description": "Tetris",
+      "url": "pages/mytools/tetris/index.html",
+      "type": "Game"
+   },
+   {
+      "name": "Snake",
+      "description": "Snake",
+      "url": "pages/mytools/snake/index.html",
+      "type": "Game"
+   },
+   {
       "name": "Alarm Clock",
       "description": "Alarm Clock",
       "url": "pages/mytools/alarm/index.html",
+      "type": "Others"
+   },
+   {
+      "name": "Timer",
+      "description": "Count Down Time",
+      "url": "pages/mytools/counttime/index.html",
       "type": "Others"
    }
 ]
