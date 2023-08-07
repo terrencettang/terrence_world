@@ -1,0 +1,35 @@
+<main id = "main">
+    <div id ="content">
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Text</a></li>
+            </ul>
+        </nav>
+    <h2 class="title">Stepping on Mines</h2>
+    <div class="containers">
+        <div id="gameboard"></div>
+    </div>
+    <div class="center">
+        <button type="button" class="btn center" id="restartButton">Restart</button>
+    </div>
+    <script>
+        //main js
+        var script = document.createElement('script');
+        script.src = location.origin + '/terrence_world/scripts/js/mytools/steponmines.js';
+        document.getElementById('main').appendChild(script);
+        //common js
+        var script = document.createElement('script');
+        script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+        document.getElementById('main').appendChild(script);
+        script.onload = function() {
+            check_currentclass("mytools");
+        }
+        //main css
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = location.origin + '/terrence_world/scripts/css/mytools/steponmines.css';
+        document.getElementById('main').appendChild(link);   
+    </script>
+</div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>

@@ -84,6 +84,12 @@
       "type": "Game"
    },
    {
+      "name": "Stepping on Mines",
+      "description": "Stepping on Mines",
+      "url": "pages/mytools/steponmines/index.html",
+      "type": "Game"
+   },
+   {
       "name": "Alarm Clock",
       "description": "Alarm Clock",
       "url": "pages/mytools/alarm/index.html",
