@@ -24,6 +24,12 @@
       "type": "Photo"
    },
    {
+      "name": "Photo to IG",
+      "description": "Check the dimension of the photo and resize for IG",
+      "url": "pages/mytools/phototoig/index.html",
+      "type": "Photo"
+   },
+   {
       "name": "IP Checker",
       "description": "Check Your IP Address",
       "url": "pages/mytools/ip_check/index.html",
@@ -87,6 +93,12 @@
       "name": "Stepping on Mines",
       "description": "Stepping on Mines",
       "url": "pages/mytools/steponmines/index.html",
+      "type": "Game"
+   },
+   {
+      "name": "BlackJack",
+      "description": "BlackJack",
+      "url": "pages/mytools/blackjack/index.html",
       "type": "Game"
    },
    {

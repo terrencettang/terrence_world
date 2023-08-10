@@ -13,6 +13,8 @@
     color :#f59563;
 }
 .tile {
+    background-color: #fff;
+    color: #fff;
     width: 90px;
     height: 90px;
     font-size: 36px;
@@ -21,6 +23,10 @@
     line-height: 90px;
     position: absolute;
     border-radius: 5px;
+}
+.tile-0 {
+    background-color: #fff;
+    color: #fff;
 }
 .tile-2 {
     background-color: #eee4da;

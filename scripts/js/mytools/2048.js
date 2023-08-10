@@ -200,6 +200,76 @@ document.addEventListener("keydown", function(event) {
             break;
     }
     });
+  
+// Save game data to local storage
+function saveGame() {
+    const gameData = {
+      cells: cells,
+      score: score
+    };
+    const gameDataString = JSON.stringify(gameData);
+  
+    // Prompt the user to save the game data as a file
+    const downloadLink = document.createElement("a");
+    downloadLink.href = URL.createObjectURL(new Blob([gameDataString], { type: "application/json" }));
+    downloadLink.download = "gameData.json";
+    downloadLink.click();
+  }
+  // Load game data to local storage
+  function loadGameDataFromFile(file) {
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      const gameDataString = e.target.result;
+      const gameData = JSON.parse(gameDataString);
+
+      // Restore the game state using the loaded data
+      cells = gameData.cells;
+      score = gameData.score;
+      displayGame();
+    };
+
+    reader.readAsText(file);
+  }
+
+  function displayGame() {
+    // Clear the existing game board
+    gameBoard.innerHTML = "";
+
+    // Create the cells and display their values
+    for (var i = 0; i < 4; i++) {
+        for (var j = 0; j < 4; j++) {
+            var cell = document.createElement("div");
+            cell.className = "tile tile-" + cells[i][j].value;
+            cell.style.top = (i * 100) + "px";
+            cell.style.left = (j * 100) + "px";
+            cell.textContent = cells[i][j].value;
+            gameBoard.appendChild(cell);
+            cells[i][j].element = cell;
+        }
+    }
+
+    // Update the score
+    updateScore();
+}
+
+  function handleFileSelection(event) {
+    const file = event.target.files[0];
+    loadGameDataFromFile(file);
+  }
+
+
+  // Attach event listeners to save and load buttons
+  var saveGameButton = document.getElementById("save-button");
+  saveGameButton.addEventListener("click", saveGame);
+  var loadGameButton = document.getElementById("load-button");
+  loadGameButton.addEventListener("click", function() {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "application/json";
+    fileInput.addEventListener("change", handleFileSelection);
+    fileInput.click();
+  });
 
 // Add event listener to the new game button
 var newGameButton = document.getElementById("new-game");

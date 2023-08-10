@@ -1,0 +1,72 @@
+<main id = "main">
+    <div id ="content">
+        <style>
+            .card-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .card {
+                width: 100px;
+                height: 150px;
+                margin: 5px;
+            }
+            .points {
+                font-size: 16px;
+                font-weight: bold;
+            }
+            .win {
+            color: blue;
+            }
+            .loss {
+            color: red;
+            }
+            .tie {
+            color: green;
+            }
+            #win_message {
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+        </style>
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Game</a></li>
+            </ul>
+        </nav>
+    <h2 class="title">Blackjack Game</h2>
+    <div class="containers center">
+        <div id="dealer-hand" class="card-container center"></div>
+        <p id="dealer-points" class = "points">Dealer's Points: </p>
+        <p id="win_message"></p><br>
+        <div id="player-hand" class="card-container center"></div>
+        <p id="player-points" class = "points">Player's Points: </p>
+        <div>
+            <button class="btn center" id="start-button" onclick="startGame()">Start</button>
+            <button class="btn center" id="hit-button" onclick="hit()">Hit</button>
+            <button class="btn center" id="stand-button" onclick="stand()">Stand</button>
+        </div>
+    </div>
+    <div id="reference">
+        <p>Reference: <br>
+        https://en.wikipedia.org/wiki/Blackjack
+        </p>
+    </div>
+    <script>
+        //main js
+        var script = document.createElement('script');
+        script.src = location.origin + '/terrence_world/scripts/js/mytools/blackjack.js';
+        document.getElementById('main').appendChild(script);
+        //common js
+        var script = document.createElement('script');
+        script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+        document.getElementById('main').appendChild(script);
+        script.onload = function() {
+          check_currentclass("mytools");
+        }
+    </script>
+</div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>

@@ -1,0 +1,47 @@
+<main id = "main">
+    <div id ="content">
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Photo</a></li>
+            </ul>
+        </nav>
+        <h2 class="title">Photo for IG</h2>
+        <div class="containers">
+            <input type="file" id="uploadInput">
+            <br>
+            <label for="colorInput">Padding Color:</label>
+            <select class="browser-default" id="colorInput">
+                <option value="custom">Others</option>
+                <option value="#000000" style="background-color: #000000;">Black</option>
+                <option value="#ffffff" style="background-color: #ffffff;">White</option>
+                <option value="#ff0000" style="background-color: #ff0000;">Red</option>
+                <option value="#ffa500" style="background-color: #ffa500;">Orange</option>
+                <option value="#ffff00" style="background-color: #ffff00;">Yellow</option>
+                <option value="#008000" style="background-color: #008000;">Dark Green</option>
+                <option value="#008000" style="background-color: #00ff00;">Green</option>
+                <option value="#0000ff" style="background-color: #0000ff;">Blue</option>
+                <option value="#4b0082" style="background-color: #4b0082;">Indigo</option>
+                <option value="#a0a0a0" style="background-color: #a0a0a0;">Grey</option>
+            </select>
+            <label for="customColorInput">Other Colors:</label>
+            <input type="color" id="customColorInput" value="#ffffff"><br>
+        </div>
+        <div class="center">
+            <canvas id="canvas"></canvas>
+        </div>
+        <script>
+            //main js
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/mytools/phototoig.js';
+            document.getElementById('main').appendChild(script);
+            //common js
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+            document.getElementById('main').appendChild(script);
+            script.onload = function() {
+            check_currentclass("mytools");
+            }
+        </script>
+    </div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>
