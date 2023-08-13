@@ -1,0 +1,150 @@
+<main id = "main">
+    <div id ="content">
+        <style>
+            label {
+                font-size: 18px; /* Adjust the font size value as needed */
+                font-weight: bold;
+            }
+            .correct { color: blue; }
+            .incorrect { color: red; }
+            #operator, #num1-min, #num1-max, #num2-min, #num2-max {
+                font-size: 18px;
+                width: 100px; /* Adjust the width value as needed */
+                color: var(--color-text-default);
+            }
+            #question {
+                font-size: 30px;
+                font-weight: bold;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: var(--color-text-default);
+            }
+            #generate {
+                margin-top: 10px;
+            }
+            #answer{
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                width: 300px;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                color: var(--color-text-default);
+            }
+            #result {
+                margin-top: 20px;
+                font-weight: bold;
+                font-size: 30px;
+            }
+        </style>
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Number</a></li>
+            </ul>
+        </nav>
+        <h2 class="title">Arithmetic Generator</h2>
+        <table class = "noborder width40">
+            <tr>
+                <td><label for="num1-min">1st No. Min Digit:</label></td>
+                <td>
+                <select id="num1-min">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="num1-max">1st No. Max Digit:</label></td>
+                <td>
+                <select id="num1-max">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="num2-min">2nd No. Min Digit:</label></td>
+                <td>
+                <select id="num2-min">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="num2-max">2nd No. Max Digit:</label></td>
+                <td>
+                <select id="num2-max">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="operator">Operator:</label></td>
+                <td>
+                <select id="operator">
+                    <option value="random">Random</option>
+                    <option value="+">Add</option>
+                    <option value="-">Minus</option>
+                    <option value="*">Multiply</option>
+                    <option value="/">Divide</option>
+                </select>
+                </td>
+            </tr>
+        </table>
+        <div class="containers center">
+            <button class = "btn center" id="generate" onclick="generateQuestion()">Generate Question</button>
+            <p id="question"></p>
+            <input type="number" id="answer" placeholder="Answer"><br>
+            <button class = "btn center" onclick="checkAnswer()">Check Answer</button><br>
+            <p id="result"></p>
+        </div>
+    <script>
+        //main js
+        var script = document.createElement('script');
+        script.src = location.origin + '/terrence_world/scripts/js/mytools/arithmetic_generator.js';
+        document.getElementById('main').appendChild(script);
+        //common js
+        var script = document.createElement('script');
+        script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+        document.getElementById('main').appendChild(script);
+        script.onload = function() {
+            check_currentclass("mytools");
+        }
+    </script>
+    </div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>

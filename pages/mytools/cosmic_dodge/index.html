@@ -1,0 +1,67 @@
+<main id = "main">
+    <div id ="content">
+        <style>
+            #game-area {
+                width: 400px;
+                height: 600px;
+                border: 1px solid black;
+                background-color: black;
+                position: relative;
+                margin: 0 auto;
+                margin-bottom: 10px;
+            }
+            #spaceship {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: grey;
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .asteroid {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-color: brown;
+                position: absolute;
+            }
+            .timer {
+                font-size: 20px;
+                font-weight: bold;
+                color: red;
+            }
+        </style>     
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Game</a></li>
+            </ul>
+        </nav>
+        <h2 class="title">Cosmic Dodge</h2>
+        <div class = "containers">
+            <div id="timer" class="center">Time: <span id="elapsedTime">0</span> seconds</div>
+            <div id="game-area" class="center">
+            <div id="spaceship"></div>
+            </div>
+                <div class = "center">
+                    <button class = "btn center" id="start-button">Start Game</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            //main js
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/mytools/cosmic_dodge.js';
+            document.getElementById('main').appendChild(script);
+            //common js
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+            document.getElementById('main').appendChild(script);
+            script.onload = function() {
+              check_currentclass("mytools");
+            }
+        </script>
+    </div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>

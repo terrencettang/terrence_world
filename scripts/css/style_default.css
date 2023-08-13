@@ -116,6 +116,7 @@ label {
 /* self defined class*/
 .containers {
    margin: 0 auto;
+   margin-bottom: 10px;
    text-align: left;
    width: 50%;
    justify-content: center;

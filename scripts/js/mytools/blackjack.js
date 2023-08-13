@@ -166,14 +166,3 @@ function stand() {
 
   disableButtons();
 }
-
-// // Event listeners for game buttons
-// console.log("run2");
-// startButton.removeEventListener("click", startGame);
-// startButton.addEventListener("click", startGame);
-
-// hitButton.removeEventListener("click", hit);
-// hitButton.addEventListener("click", hit);
-
-// standButton.removeEventListener("click", stand);
-// standButton.addEventListener("click", stand);

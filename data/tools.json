@@ -48,6 +48,12 @@
       "type": "Number"
    },
    {
+      "name": "Arithmetic Generator",
+      "description": "Generating a Arithmetic Question",
+      "url": "pages/mytools/arithmetic_generator/index.html",
+      "type": "Number"
+   },
+   {
       "name": "2048 Game",
       "description": "2048 Game",
       "url": "pages/mytools/2048/index.html",
@@ -99,6 +105,12 @@
       "name": "BlackJack",
       "description": "BlackJack",
       "url": "pages/mytools/blackjack/index.html",
+      "type": "Game"
+   },
+   {
+      "name": "Cosmic Dodge",
+      "description": "Cosmic Dodge",
+      "url": "pages/mytools/cosmic_dodge/index.html",
       "type": "Game"
    },
    {
