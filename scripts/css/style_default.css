@@ -114,10 +114,13 @@ label {
    color: var(--color-text-variation-1);
 }
 /* self defined class*/
+.center {
+   margin: 0 auto;
+}
 .containers {
    margin: 0 auto;
    margin-bottom: 10px;
-   text-align: left;
+   text-align: center;
    width: 50%;
    justify-content: center;
    align-items: center;

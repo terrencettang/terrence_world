@@ -54,6 +54,12 @@
       "type": "Number"
    },
    {
+      "name": "Fraction Arithmetic Generator",
+      "description": "Generating a Fraction Arithmetic Question",
+      "url": "pages/mytools/fraction_arithmetic_generator/index.html",
+      "type": "Number"
+   },
+   {
       "name": "2048 Game",
       "description": "2048 Game",
       "url": "pages/mytools/2048/index.html",

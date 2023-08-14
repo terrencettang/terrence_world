@@ -1,0 +1,280 @@
+<main id = "main">
+    <div id ="content">
+        <style>
+            label {
+                font-size: 18px; /* Adjust the font size value as needed */
+                font-weight: bold;
+            }
+            .minmax {
+                font-size: 18px; /* Adjust the font size value as needed */
+                font-weight: bold;
+            }
+            .correct { color: blue; }
+            .incorrect { color: red; }
+            .question, .result{
+                display: flex;
+                margin: 0 auto;
+                justify-content: center;
+            }
+            .question {
+                font-size: 30px;
+                font-weight: bold;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: var(--color-text-default);
+            }
+            .input-container {
+                position: relative;
+            }
+            .input-line {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: 1px;
+                width: 250px;
+                background-color: black;
+            }
+            #operator, #num1-num-min, #num1-num-max, #num1-deno-min, #num1-deno-max, #num2-num-min, #num2-num-max, #num2-deno-min, #num2-deno-max {
+                font-size: 18px;
+                width: 100px; /* Adjust the width value as needed */
+                color: var(--color-text-default);
+            }
+            table.noborder td,
+            table.noborder th {
+            border: none;
+            position: relative;
+            }
+            #num1num::before, #num2num::before, #resultnum::before {
+            display: none;
+            }
+            #num1num:not(:empty)::after, #num2num:not(:empty)::after, #resultnum:not(:empty)::after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            }
+            #resultnum:not(:empty)::after {
+                background-color: red;
+            }
+            #answernum, #answerdeno {
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                width: 250px;
+                color: var(--color-text-default);
+            }
+            #check{
+                margin-top: 10px;
+            }
+            #result {
+                margin-top: 10px;
+                font-weight: bold;
+                font-size: 30px;
+            }
+        </style>
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Number</a></li>
+            </ul>
+        </nav>
+        <h2 class="title">Fraction Arithmetic Generator</h2>
+        <table class = "noborder width50 center">
+            <tr>
+                <td></td>
+                <td class = "minmax center">Min. Digit</td>
+                <td class = "minmax center">Max. Digit</td>
+            </tr>
+            <tr>
+                <td><label for="num1-num">1st No. Numerator:</label></td>
+                <td>
+                <select id="num1-num-min">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+                <td>
+                <select id="num1-num-max">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="num1-deno">1st No. Denominator:</label></td>
+                <td>
+                <select id="num1-deno-min">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+                <td>
+                <select id="num1-deno-max">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="num2-num">2nd No. Numerator:</label></td>
+                <td>
+                <select id="num2-num-min">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+                <td>
+                <select id="num2-num-max">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="num2-demo">2nd No. Denominator:</label></td>
+                <td>
+                <select id="num2-deno-min">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+                <td>
+                <select id="num2-deno-max">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="operator">Operator:</label></td>
+                <td>
+                <select id="operator">
+                    <option value="random">Random</option>
+                    <option value="+">Add</option>
+                    <option value="-">Minus</option>
+                    <option value="×">Multiply</option>
+                    <option value="÷">Divide</option>
+                </select>
+                </td>
+            </tr>
+        </table>
+        <div class="center">
+            <button class = "btn center" id="generate" onclick="generateQuestion()">Generate Question</button>
+        </div>
+        <div class="containers">
+            <table class = "question noborder">
+                <tr>
+                    <td id = "num1num"></td>
+                    <td rowspan="2" id = "operater"></td>
+                    <td id = "num2num"></td>
+                </tr>
+                <tr>
+                    <td id = "num1deno"></td>
+                    <td id = "num2deno"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="center">
+            <div class="input-container">
+                <input type="number" id="answernum" placeholder="Numerator"><br>
+                <div class="input-line"></div><br>
+                <input type="number" id="answerdeno" placeholder="Denominator"><br>
+            </div>
+            <button class = "btn center" id="check" onclick="checkAnswer()">Check Answer</button><br>
+        </div>
+        <div class="containers">
+            <table class ="result noborder center" id = "result">
+                <tr>
+                    <td rowspan="2" class = "center" id = "resultmessage"></td>
+                    <td class = "center" id = "resultnum"></td>
+                </tr>
+                <tr>
+                    <td class = "center" id = "resultdeno"></td>
+                </tr>
+            </table>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/fraction.js/fraction.min.js"></script>
+        <script>
+            //main js
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/mytools/fraction_arithmetic_generator.js';
+            document.getElementById('main').appendChild(script);
+            //common js
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+            document.getElementById('main').appendChild(script);
+            script.onload = function() {
+                check_currentclass("mytools");
+            }
+        </script>
+    </div>
+</main>
+<script src = "../../../scripts/js/redirect_main.js"></script>

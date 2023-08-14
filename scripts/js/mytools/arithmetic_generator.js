@@ -17,6 +17,13 @@ function generateQuestion() {
     var num2MinDigits = parseInt(num2MinSelect.value);
     var num2MaxDigits = parseInt(num2MaxSelect.value);
     
+    // Validate max >= min
+    if (num1MaxDigits < num1MinDigits || num2MaxDigits < num2MinDigits) {
+        // Handle validation error
+        alert('Invalid input: max must be greater than or equal to min.');
+        return;
+    }
+
     if (operatorSelect.value === "random"){
         operator = generateRandom();
     } else {
@@ -30,7 +37,7 @@ function generateQuestion() {
 }
 
 function generateRandom() {
-    var operators = ['+', '-', '*', '/'];
+    var operators = ['+', '-', '×', '÷'];
     var randomOperator = operators[Math.floor(Math.random() * operators.length)];
     return randomOperator;
 }
@@ -57,7 +64,6 @@ function checkAnswer() {
         resultElement.className = 'incorrect';
         return;
     }
-  
     switch (operator) {
       case '+':
         correctAnswer = num1 + num2;
@@ -65,15 +71,13 @@ function checkAnswer() {
       case '-':
         correctAnswer = num1 - num2;
         break;
-      case '*':
+      case '×':
         correctAnswer = num1 * num2;
         break;
-      case '/':
+      case '÷':
         correctAnswer = num1 / num2;
         break;
     }
-  
-    
     var decimalPlaces = userAnswer.toString().split('.')[1]?.length || 0;
     var tolerance = 0.1 ** decimalPlaces;
     var resultMessage;
