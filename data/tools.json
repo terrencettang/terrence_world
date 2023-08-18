@@ -42,6 +42,12 @@
       "type": "Text"
    },
    {
+      "name": "Word Counter",
+      "description": "For counting words in a Text",
+      "url": "pages/mytools/word_count/index.html",
+      "type": "Text"
+   },
+   {
       "name": "Random Number",
       "description": "Generating a random number",
       "url": "pages/mytools/random_number/index.html",

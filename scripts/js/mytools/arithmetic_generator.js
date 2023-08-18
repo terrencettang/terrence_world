@@ -2,7 +2,6 @@ var identifier = document.querySelector('.containers');
 if (identifier .getAttribute('title') === null){
     identifier .setAttribute("title", "");
 
-
 var num1MinSelect = document.getElementById('num1-min');
 var num1MaxSelect = document.getElementById('num1-max');
 var num2MinSelect = document.getElementById('num2-min');
