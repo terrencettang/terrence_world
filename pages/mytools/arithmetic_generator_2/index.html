@@ -1,0 +1,158 @@
+<main id = "main">
+    <div id ="content">
+        <style>
+            label {
+                font-size: 18px; /* Adjust the font size value as needed */
+                font-weight: bold;
+            }
+            .correct { color: blue; }
+            .incorrect { color: red; }
+            #operator, #num-min, #num-max, #num-no {
+                font-size: 18px;
+                width: 100px; /* Adjust the width value as needed */
+                color: var(--color-text-default);
+            }
+            #question {
+                font-size: 30px;
+                font-weight: bold;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                color: var(--color-text-default);
+            }
+            #generate {
+                margin-top: 10px;
+            }
+            #check {
+                margin-top: 10px;
+            }
+            #answer{
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                width: 300px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                color: var(--color-text-default);
+            }
+            #result {
+                margin-top: 10px;
+                font-weight: bold;
+                font-size: 30px;
+            }
+        </style>
+        <nav id = "nav_sub">
+            <ul>
+                <li><a href="#" id ="current">Number</a></li>
+            </ul>
+        </nav>
+        <h2 class="title">Arithmetic Generator II</h2>
+        <table class = "noborder width40">
+            <tr>
+                <td><label for="num-no">No. of Number</label></td>
+                <td>
+                <select id="num-no">
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="num-min">No. Min Digit:</label></td>
+                <td>
+                <select id="num-min">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="num1-max">No. Max Digit:</label></td>
+                <td>
+                <select id="num-max">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <!-- Add more options if needed -->
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class = "center"><label for="operators" class = "center">Operators:</label></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        <input class = "center" type="checkbox" name="operator" value="+" checked> Add
+                    </label>
+                </td> 
+                <td>
+                    <label>
+                        <input class = "center" type="checkbox" name="operator" value="-" checked> Minus
+                    </label>
+                </td>
+            <tr>
+                <td>
+                    <label>
+                        <input class = "center" type="checkbox" name="operator" value="×" checked> Multiply
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input class = "center" type="checkbox" name="operator" value="÷"> Divide
+                    </label>
+                </td>
+            </tr>
+            <tr>
+            <td colspan="2" class = "center">
+                <label class = "center">
+                    <input class = "center" type="checkbox" id="parenthesesCheckbox"> Add parentheses
+                </label>
+            </td>
+            </tr>
+        </table>
+        <div class="containers center">
+            <button class = "btn center" id="generate" onclick="generateQuestion()">Generate Question</button>
+            <p id="question"></p>
+            <input type="number" id="answer" placeholder="Answer"><br>
+            <button class = "btn center" id="check" onclick="checkAnswer()">Check Answer</button><br>
+            <p id="result"></p>
+        </div>
+        <script>
+            //main js
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/mytools/arithmetic_generator_2.js';
+            document.getElementById('main').appendChild(script);
+            //common js
+            var script = document.createElement('script');
+            script.src = location.origin + '/terrence_world/scripts/js/check_class.js';
+            document.getElementById('main').appendChild(script);
+            script.onload = function() {
+                check_currentclass("mytools");
+            }
+        </script>
+        </div>
+    </main>
+    <script src = "../../../scripts/js/redirect_main.js"></script>

@@ -5,21 +5,56 @@
                 <li><a href="#" id ="current">Number</a></li>
             </ul>
         </nav>
+        <style>
+            tr{
+                line-height: 0.5;
+            }
+            .table_border{
+                border-spacing: 0;
+            }
+            #textArea{
+                margin-bottom: 10px;
+            }
+        </style>
         <h2 class="title">Word Counter</h2>
         <div class="containers">
             <textarea id="textArea" rows="10" cols="50"></textarea><br>
             <button class = "btn center" id="countWords" onclick="countWords()">Count Words</button>
-            <p>Total Words: <span id="wordCount">0</span><br>
-                Total Char:<span id="charCount">0</span><br>
-                Eng Char:<span id="englishCharCount">0</span><br>
-                Eng Punct:<span id="englishPunctCount">0</span>
-                Eng Words:<span id="englishWordCount">0</span>
-                Digits:<span id="digitCount">0</span>
-                Chi Char:<span id="chineseCharCount">0</span>
-                Chi Punct:<span id="chinesePunctCount">0</span>
-
-                <span id="byteWordCount">0</span>
-            </p>
+            <table class="noborder width50 table_border">
+                <tr>
+                    <td>Total Words:</td>
+                    <td><span id="wordCount">0</span></td>
+                </tr>
+                <tr>
+                    <td>Total Char:</td>
+                    <td><span id="charCount">0</span></td>
+                </tr>
+                <tr>
+                    <td>Eng Char:</td>
+                    <td><span id="englishCharCount">0</span></td>
+                </tr>
+                <tr>
+                    <td>Eng Punct:</td>
+                    <td><span id="englishPunctCount">0</span></td>
+                </tr>
+                <tr>
+                    <td>Eng Words:</td>
+                    <td><span id="englishWordCount">0</span></td>
+                </tr>
+                <tr>
+                    <td>Digits:</td>
+                    <td><span id="digitCount">0</span></td>
+                </tr>
+                <tr>
+                    <td>Chi Char:</td>
+                    <td><span id="chineseCharCount">0</span></td>
+                </tr>
+                <tr>
+                    <td>Chi Punct:</td>
+                    <td><span id="chinesePunctCount">0</span></td>
+                </tr>
+            </table>
+            <div id="wordFrequency"></div>
         </div>
     <script>
         //main js

@@ -54,8 +54,8 @@
       "type": "Number"
    },
    {
-      "name": "Arithmetic Generator",
-      "description": "Generating a Arithmetic Question",
+      "name": "Arithmetic Generator I",
+      "description": "Generating a Simple Arithmetic Question",
       "url": "pages/mytools/arithmetic_generator/index.html",
       "type": "Number"
    },
@@ -136,5 +136,17 @@
       "description": "Count Down Time",
       "url": "pages/mytools/counttime/index.html",
       "type": "Others"
+   },
+   {
+      "name": "Youtube Player",
+      "description": "Open a custom window for youtube to play",
+      "url": "pages/mytools/youtube_player/index.html",
+      "type": "Others"
+   },
+   {
+      "name": "Arithmetic Generator II",
+      "description": "Generating a Complex Arithmetic Question",
+      "url": "pages/mytools/arithmetic_generator_2/index.html",
+      "type": "Number"
    }
 ]

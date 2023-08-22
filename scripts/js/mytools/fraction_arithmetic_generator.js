@@ -112,6 +112,8 @@ function checkAnswer() {
   
     if (userAnswer.n === correctAnswer.n && userAnswer.d === correctAnswer.d){
       resultMessage = 'Correct!';
+      resultnumElement.textContent = null;
+      resultdenoElement.textContent = null;
       resultElement.classList.remove('incorrect');
       resultElement.classList.add('correct');
     } else {
